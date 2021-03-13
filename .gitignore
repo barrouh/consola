@@ -1,0 +1,12 @@
+
+*.prefs
+.project
+.settings
+consola-backend/.project
+consola-backend/.settings
+consola-backend/.classpath
+consola-backend/target
+consola-frontend/.project
+consola-frontend/.settings
+consola-frontend/.classpath
+consola-frontend/target
