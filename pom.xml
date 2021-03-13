@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.4.3</version>
+	</parent>
+
+	<groupId>com.consola</groupId>
+	<artifactId>consola-parent</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0-SNAPSHOT</version>
+
+	<name>Consola Parent</name>
+	<url>https://github.com/barrouh/consola</url>
+	<description>
+
+    </description>
+
+	<modules>
+		<module>consola-backend</module>
+		<module>consola-frontend</module>
+	</modules>
+
+	<developers>
+		<developer>
+			<name>Mohamed Barrouh</name>
+			<email>mohamed.barrouh@gmail.com</email>
+			<organization>com.github.barrouh</organization>
+			<organizationUrl>http://github.com/barrouh/</organizationUrl>
+		</developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>scm:git:git://github.com/barrouh/consola.git</connection>
+		<developerConnection>scm:git:ssh://github.com:barrouh/consola.git</developerConnection>
+		<url>http://github.com/barrouh/consola</url>
+	</scm>
+
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+
+</project>
