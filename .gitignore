@@ -10,3 +10,6 @@ consola-frontend/.project
 consola-frontend/.settings
 consola-frontend/.classpath
 consola-frontend/target
+consola-frontend/node_modules
+consola-frontend/.vscode
+consola-frontend/setPathNodeJs.bat
