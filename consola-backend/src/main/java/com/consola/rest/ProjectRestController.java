@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.consola.model.Project;
-import com.consola.repository.ProjectRepository;
+import com.consola.repositories.ProjectRepository;
 
 @RestController
 @RequestMapping("/rest-api/project/")
