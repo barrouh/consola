@@ -1,6 +1,7 @@
-
-    <mat-toolbar class="mat-toolbar-custom">
-        <mat-toolbar-row>
-            <span class="menu-spacer">Consola</span>
-        </mat-toolbar-row>
-    </mat-toolbar>
+<mat-toolbar fxLayout="row" class="mat-toolbar-custom">
+  <span fxFlex>Consola</span>
+  <button mat-button *ngFor="let item of menuItems">
+    <mat-icon class="mr">{{ item.icon }}</mat-icon>
+    {{ item.label }}
+  </button>
+</mat-toolbar>
