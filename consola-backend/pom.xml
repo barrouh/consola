@@ -27,19 +27,19 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
 		</dependency>
-		
+
 		<dependency>
-		    <groupId>mysql</groupId>
-		    <artifactId>mysql-connector-java</artifactId>
-		    <scope>runtime</scope>
-	    </dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -56,4 +56,30 @@
 		</plugins>
 	</build>
 
+	<profiles>
+		<profile>
+			<id>spring-data</id>
+			<build>
+				<plugins>
+					<!-- mvn goal: -Pspring-data spring-data-generator:repositories -->
+					<plugin>
+						<groupId>com.cmeza</groupId>
+						<artifactId>spring-data-generator</artifactId>
+						<version>1.1.8</version>
+						<configuration>
+							<entity-package>
+								<param>com.consola.model</param>
+							</entity-package>
+							<repository-package>com.consola.repositories</repository-package>
+							<repository-postfix>Repository</repository-postfix>
+							<manager-package>com.consola.model.managers</manager-package>
+							<manager-postfix>Manager</manager-postfix>
+							<only-annotations>false</only-annotations>
+							<overwrite>false</overwrite>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>

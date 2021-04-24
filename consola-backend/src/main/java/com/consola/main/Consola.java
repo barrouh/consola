@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EntityScan("com.consola.model")
 @ComponentScan(basePackages = "com.consola")
-@EnableJpaRepositories("com.consola.repository")
+@EnableJpaRepositories("com.consola.repositories")
 @SpringBootApplication
 public class Consola {
 
