@@ -13,9 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { LoginComponent } from './login/login.component';
 @NgModule({
-  declarations: [LayoutComponent, LandingPageComponent, LoginComponent],
+  declarations: [LayoutComponent, LandingPageComponent],
   imports: [
     LayoutRoutingModule,
     MatToolbarModule,
