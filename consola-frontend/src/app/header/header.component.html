@@ -1,5 +1,5 @@
 <mat-toolbar fxLayout="row" class="mat-toolbar-custom">
-  <span fxFlex>Consola</span>
+  <mat-icon class="mr">home</mat-icon> <span fxFlex>Consola</span>
   <button mat-button *ngFor="let item of menuItems">
     <mat-icon class="mr">{{ item.icon }}</mat-icon>
     {{ item.label }}
