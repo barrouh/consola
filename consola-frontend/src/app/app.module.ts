@@ -21,6 +21,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LoginComponent } from './login/login.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatMenuModule } from '@angular/material/menu';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { MatMenuModule } from '@angular/material/menu';
     FlexLayoutModule,
     MatInputModule,
     MatMenuModule,
+    RouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
