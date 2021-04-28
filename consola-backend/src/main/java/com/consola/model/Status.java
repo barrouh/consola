@@ -9,8 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "Status", catalog = "consola")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Status implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -37,6 +41,7 @@ public class Status implements java.io.Serializable {
 		this.name = name;
 	}
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "status")
 	public Set<Project> getProjects() {
 		return this.projects;

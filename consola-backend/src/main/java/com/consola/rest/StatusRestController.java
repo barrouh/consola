@@ -11,32 +11,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.consola.dto.ProjectDTO;
-import com.consola.model.Project;
-import com.consola.repositories.ProjectRepository;
+import com.consola.dto.StatusDTO;
+import com.consola.model.Status;
+import com.consola.repositories.StatusRepository;
 
 @RestController
-@RequestMapping("/api/projects")
-public class ProjectRestController {
+@RequestMapping("/api/status")
+public class StatusRestController {
 
 	@Autowired
-	private ProjectRepository projectRepository;
+	private StatusRepository statusRepository;
 	
 	private ModelMapper mapper = new ModelMapper();
 
 	@GetMapping("")
-	public List<Project> projects() {
-		return projectRepository.findAll();
+	public List<Status> status() {
+		return statusRepository.findAll();
 	}
 	
 	@GetMapping("/{id}")
-	public Optional<Project> projectById(@PathVariable("id") int id) {
-		return projectRepository.findById(id);
+	public Optional<Status> statusById(@PathVariable("id") int id) {
+		return statusRepository.findById(id);
 	}
 	
 	@GetMapping("/save")
-	public Project addProject(@RequestBody ProjectDTO project) {
-		return projectRepository.saveAndFlush(mapper.map(project, Project.class));
+	public Status addStatus(@RequestBody StatusDTO status) {
+		return statusRepository.saveAndFlush(mapper.map(status, Status.class));
 	}
 
 }

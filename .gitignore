@@ -13,3 +13,4 @@ consola-frontend/target
 consola-frontend/node_modules
 consola-frontend/.vscode
 consola-frontend/setPathNodeJs.bat
+consola-frontend/consola-frontend.iml
