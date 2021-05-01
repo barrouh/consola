@@ -9,12 +9,12 @@ SET sql_mode = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 CREATE TABLE Status(
-                          id INT PRIMARY KEY,
+                          id INT AUTO_INCREMENT PRIMARY KEY,
                           name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Project(
-                          id INT PRIMARY KEY,
+                          id INT AUTO_INCREMENT  PRIMARY KEY,
                           name VARCHAR(255) NOT NULL,
                           shortName VARCHAR(255) DEFAULT NULL,
                           startDate date NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE Project(
 );
 
 CREATE TABLE Role(
-                          id INT PRIMARY KEY,
+                          id INT AUTO_INCREMENT PRIMARY KEY,
                           name VARCHAR(255) NOT NULL
 );
 
@@ -52,12 +52,12 @@ CREATE TABLE Project_Employee(
 );
 
 CREATE TABLE Vacation_Status(
-                          id INT PRIMARY KEY,
+                          id INT AUTO_INCREMENT PRIMARY KEY,
                           name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Vacation(
-                          id INT PRIMARY KEY,
+                          id INT AUTO_INCREMENT PRIMARY KEY,
                           requestDate date NOT NULL,
                           startDate date NOT NULL,
                           endDate date NOT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE Vacation_Status_Vacation(
 );
 
 CREATE TABLE Notification(
-                          id INT PRIMARY KEY,
+                          id INT AUTO_INCREMENT PRIMARY KEY,
                           message VARCHAR(500) NOT NULL,
                           date date NOT NULL,
                           seen boolean NOT NULL,

@@ -13,37 +13,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.consola.dto.StatusDTO;
-import com.consola.model.Status;
-import com.consola.repositories.StatusRepository;
+import com.consola.dto.VacationDTO;
+import com.consola.model.Vacation;
+import com.consola.repositories.VacationRepository;
 
 @RestController
-@RequestMapping("/api/status")
-public class StatusRestController {
+@RequestMapping("/api/vacations")
+public class VacationRestController {
 
 	@Autowired
-	private StatusRepository statusRepository;
-	
+	private VacationRepository vacationRepository;
+
 	private ModelMapper mapper = new ModelMapper();
 
 	@GetMapping("")
-	public List<Status> status() {
-		return statusRepository.findAll();
+	public List<Vacation> vacations() {
+		return vacationRepository.findAll();
 	}
-	
+
 	@GetMapping("/{id}")
-	public Optional<Status> statusById(@PathVariable("id") int id) {
-		return statusRepository.findById(id);
+	public Optional<Vacation> vacationById(@PathVariable("id") int id) {
+		return vacationRepository.findById(id);
 	}
-	
+
 	@PostMapping("/save")
-	public Status saveStatus(@RequestBody StatusDTO status) {
-		return statusRepository.saveAndFlush(mapper.map(status, Status.class));
+	public Vacation saveVacation(@RequestBody VacationDTO vacation) {
+		return vacationRepository.saveAndFlush(mapper.map(vacation, Vacation.class));
 	}
-	
+
 	@DeleteMapping("/{id}")
-	public void deleteStatusById(@PathVariable("id") int id) {
-		 statusRepository.deleteById(id);
+	public void deleteVacationById(@PathVariable("id") int id) {
+		vacationRepository.deleteById(id);
 	}
 
 }

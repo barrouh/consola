@@ -8,41 +8,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.consola.dto.ProjectDTO;
-import com.consola.model.Project;
-import com.consola.repositories.ProjectRepository;
+import com.consola.dto.RoleDTO;
+import com.consola.model.Role;
+import com.consola.repositories.RoleRepository;
 
 @RestController
-@RequestMapping("/api/projects")
-public class ProjectRestController {
+@RequestMapping("/api/roles")
+public class RoleRestController {
 
 	@Autowired
-	private ProjectRepository projectRepository;
-	
+	private RoleRepository roleRepository;
+
 	private ModelMapper mapper = new ModelMapper();
 
 	@GetMapping("")
-	public List<Project> projects() {
-		return projectRepository.findAll();
+	public List<Role> roles() {
+		return roleRepository.findAll();
 	}
-	
+
 	@GetMapping("/{id}")
-	public Optional<Project> projectById(@PathVariable("id") int id) {
-		return projectRepository.findById(id);
+	public Optional<Role> roleById(@PathVariable("id") int id) {
+		return roleRepository.findById(id);
 	}
-	
-	@GetMapping("/save")
-	public Project saveProject(@RequestBody ProjectDTO project) {
-		return projectRepository.saveAndFlush(mapper.map(project, Project.class));
+
+	@PostMapping("/save")
+	public Role saveRole(@RequestBody RoleDTO role) {
+		return roleRepository.saveAndFlush(mapper.map(role, Role.class));
 	}
-	
+
 	@DeleteMapping("/{id}")
-	public void deleteProjectById(@PathVariable("id") int id) {
-		projectRepository.deleteById(id);
+	public void deleteRoleById(@PathVariable("id") int id) {
+		roleRepository.deleteById(id);
 	}
 
 }
