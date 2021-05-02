@@ -1,0 +1,97 @@
+<div>
+  <br />
+  <div class="container">
+    <div class="container">
+      <div
+        fxLayout="column"
+        fxLayoutGap="20px"
+        fxLayout.gt-md="row"
+        fxLayoutAlign="space-around center"
+        class="content"
+      >
+        <div class="blocks">
+          <button
+            mat-raised-button
+            class="mat-raised-button"
+            (click)="addProject()"
+          >
+            <mat-icon>add</mat-icon> Add Project
+          </button>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="container">
+      <div fxLayout="row" fxLayoutAlign="center center" class="content">
+        <mat-card class="card">
+          <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+            <h3 class="table-title">Projects management</h3>
+          </mat-card-title>
+          <mat-card-content>
+            <div class="mat-elevation-z8">
+              <mat-table #table [dataSource]="dataSource">
+                <ng-container matColumnDef="status">
+                  <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+                  <mat-cell *matCellDef="let project">{{
+                    project.status
+                  }}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="name">
+                  <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+                  <mat-cell *matCellDef="let project">{{
+                    project.name
+                  }}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="shortName">
+                  <mat-header-cell *matHeaderCellDef
+                    >Short name</mat-header-cell
+                  >
+                  <mat-cell *matCellDef="let project">{{
+                    project.shortName
+                  }}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="startDate">
+                  <mat-header-cell *matHeaderCellDef
+                    >Start date</mat-header-cell
+                  >
+                  <mat-cell class="duration-cell" *matCellDef="let project">{{
+                    project.startDate
+                  }}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="endDate">
+                  <mat-header-cell *matHeaderCellDef>End date</mat-header-cell>
+                  <mat-cell class="duration-cell" *matCellDef="let project">{{
+                    project.endDate
+                  }}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="action">
+                  <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+                  <mat-cell class="duration-cell" *matCellDef="let project"
+                    ><button mat-icon-button (click)="editProject()">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="deleteProject()">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </mat-cell>
+                </ng-container>
+
+                <mat-header-row
+                  *matHeaderRowDef="displayedColumns"
+                ></mat-header-row>
+
+                <mat-row *matRowDef="let row; columns: displayedColumns">
+                </mat-row>
+              </mat-table>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
