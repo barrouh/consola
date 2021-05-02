@@ -13,7 +13,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -22,11 +22,19 @@ import { NotificationComponent } from './notification/notification.component';
 import { SupervisorComponent } from './supervisor/supervisor.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProjectsListComponent } from './project/projects-list/projects-list.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ProjectComponent } from './project/project/project.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 @NgModule({
   declarations: [
-    LayoutComponent,
     LandingPageComponent,
     ProjectsListComponent,
+    ProjectComponent,
     EmployeeComponent,
     NotificationComponent,
     SupervisorComponent,
@@ -48,6 +56,15 @@ import { ProjectsListComponent } from './project/projects-list/projects-list.com
     MatPaginatorModule,
     MatSortModule,
     MatProgressSpinnerModule,
+    MatDialogModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    CommonModule,
+    MatDatepickerModule,        // <----- import(must)
+    MatNativeDateModule,        // <----- import for date formating(optional)
+
   ],
   providers: [],
   bootstrap: [LayoutComponent],

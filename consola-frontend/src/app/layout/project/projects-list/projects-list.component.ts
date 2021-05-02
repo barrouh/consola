@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Project } from 'src/app/shared/model/project';
 import { ProjectService } from 'src/app/shared/service/project.service';
+import { ProjectComponent } from '../project/project.component';
 
 @Component({
-  selector: 'app-project',
+  selector: 'app-projects-list',
   templateUrl: './projects-list.component.html',
   styleUrls: ['./projects-list.component.css'],
 })
@@ -56,7 +58,8 @@ export class ProjectsListComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -73,7 +76,12 @@ export class ProjectsListComponent implements OnInit {
   // change methods
 
   // actions methods
-  addProject() {}
   editProject() {}
   deleteProject() {}
+
+  openProjectDialog(): void {
+    this.dialog.open(ProjectComponent, {
+      width: '600px',
+    });
+  }
 }

@@ -1,15 +1,59 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Project } from 'src/app/shared/model/project';
+import { Status } from 'src/app/shared/model/status';
+import { ProjectService } from 'src/app/shared/service/project.service';
+import { StatusService } from 'src/app/shared/service/status.service';
 
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
-  styleUrls: ['./project.component.css']
+  styleUrls: ['./project.component.css'],
 })
 export class ProjectComponent implements OnInit {
+  // declartion
+  public projectForm!: FormGroup;
+  public statusList: Status[] = [];
+  public projectObj: Project = new Project();
 
-  constructor() { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private statusService: StatusService,
+    private projectService: ProjectService
+  ) {}
 
   ngOnInit(): void {
+    this.createForm();
+    this.loadStatus();
   }
 
+  createForm() {
+    this.projectForm = this.formBuilder.group({
+      status: [null, [Validators.required]],
+      name: [null, [Validators.required]],
+      shortName: [null, [Validators.required]],
+      startDate: [null, [Validators.required]],
+      endDate: [null, [Validators.required]],
+    });
+  }
+
+  // load methods
+  loadStatus() {
+    this.statusService.getAllStatus().subscribe((data: Status[]) => {
+      this.statusList = data;
+    });
+  }
+
+  addProject() {
+    this.projectObj = new Project();
+    this.projectObj.status = this.projectForm.controls.status.value;
+    this.projectObj.name = this.projectForm.controls.name.value;
+    this.projectObj.shortName = this.projectForm.controls.shortName.value;
+    this.projectObj.startDate = this.projectForm.controls.startDate.value;
+    this.projectObj.endDate = this.projectForm.controls.endDate.value;
+
+    this.projectService
+      .saveProject(this.projectObj)
+      .subscribe((data: Project[]) => {});
+  }
 }

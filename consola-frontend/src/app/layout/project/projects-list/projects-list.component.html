@@ -8,32 +8,32 @@
         fxLayout.gt-md="row"
         fxLayoutAlign="space-around center"
         class="content"
-      >
-        <div class="blocks">
-          <button
-            mat-raised-button
-            class="mat-raised-button"
-            (click)="addProject()"
-          >
-            <mat-icon>add</mat-icon> Add Project
-          </button>
-        </div>
-      </div>
+      ></div>
     </div>
     <br />
     <div class="container">
       <div fxLayout="row" fxLayoutAlign="center center" class="content">
         <mat-card class="card">
           <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+            <div class="blocks">
+              <button
+                mat-raised-button
+                class="mat-raised-button-custom"
+                (click)="openProjectDialog()"
+              >
+                <mat-icon>add</mat-icon> Add Project
+              </button>
+            </div>
             <h3 class="table-title">Projects management</h3>
           </mat-card-title>
+          <br />
           <mat-card-content>
             <div class="mat-elevation-z8">
-              <mat-table #table [dataSource]="dataSource">
+              <mat-table #table [dataSource]="projectsList">
                 <ng-container matColumnDef="status">
                   <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
                   <mat-cell *matCellDef="let project">{{
-                    project.status
+                    project.status.name
                   }}</mat-cell>
                 </ng-container>
 
