@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DeleteDialogComponent } from 'src/app/shared/component/project/delete-dialog/delete-dialog.component';
 import { Project } from 'src/app/shared/model/project';
@@ -14,6 +15,8 @@ import { ProjectComponent } from '../project/project.component';
 export class ProjectsListComponent implements OnInit {
   // declartion
   public projectsList: Project[] = [];
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
 
   displayedColumns = [
     'status',
@@ -24,21 +27,44 @@ export class ProjectsListComponent implements OnInit {
     'action',
   ];
 
+  //paginator parameters
+  length = 0;
+  pageSize = 10;
+  pageSizeOptions: number[] = [10, 25, 50, 100];
+  pageIndex = 0;
+
   constructor(
     private projectService: ProjectService,
-    public dialog: MatDialog,
-    private snackBar: MatSnackBar
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.loadProjects();
   }
 
+  ngAfterViewInit() {
+    this.paginator.page.subscribe((event) =>
+      this.projectService
+        .getAllProjects(event.pageIndex, event.pageSize)
+        .subscribe((data: any) => {
+          this.projectsList = data.content;
+          this.pageIndex = data.number;
+          this.pageSize = data.size;
+          this.length = data.totalElements;
+        })
+    );
+  }
+
   // load methods
   loadProjects() {
-    this.projectService.getAllProjects().subscribe((data: Project[]) => {
-      this.projectsList = data;
-    });
+    this.projectService
+      .getAllProjects(this.pageIndex, this.pageSize)
+      .subscribe((data: any) => {
+        this.projectsList = data.content;
+        this.pageIndex = data.number;
+        this.pageSize = data.size;
+        this.length = data.totalElements;
+      });
   }
 
   // change methods
@@ -78,15 +104,13 @@ export class ProjectsListComponent implements OnInit {
     let dialogRef = this.dialog.open(DeleteDialogComponent, {
       data: {
         id,
+        snackMessage: 'Project deleted successfully',
       },
       disableClose: true,
       width: '400px',
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.snackBar.open('Project deleted successfully', '', {
-        duration: 3000,
-      });
       this.loadProjects();
     });
   }

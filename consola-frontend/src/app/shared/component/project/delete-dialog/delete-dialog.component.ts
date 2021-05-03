@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProjectService } from '../../../service/project.service';
 
 @Component({
@@ -11,6 +12,7 @@ export class DeleteDialogComponent implements OnInit {
   constructor(
     private projectService: ProjectService,
     public dialogRef: MatDialogRef<DeleteDialogComponent>,
+    private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
@@ -24,6 +26,9 @@ export class DeleteDialogComponent implements OnInit {
     this.projectService
       .deleteProjectByid(this.data.id)
       .subscribe((data: any) => {
+        this.snackBar.open(this.data.snackMessage, '', {
+          duration: 3000,
+        });
         this.dialogRef.close();
       });
   }

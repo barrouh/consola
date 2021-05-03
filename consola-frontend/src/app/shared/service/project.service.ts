@@ -11,8 +11,10 @@ export class ProjectService {
 
   constructor(private http: HttpClient) {}
 
-  getAllProjects(): any {
-    return this.http.get(this.url + 'api/projects');
+  getAllProjects(pageIndex: number, pageSize: number): any {
+    return this.http.get(
+      this.url + 'api/projects?pageIndex=' + pageIndex + '&pageSize=' + pageSize
+    );
   }
 
   getProjectByid(id: number): any {
