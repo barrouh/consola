@@ -27,7 +27,7 @@ export class ProjectComponent implements OnInit {
   ngOnInit(): void {
     this.createForm();
     this.loadStatus();
-    this.loadProjectById(this.data);
+    this.loadProjectById(this.data.id);
   }
 
   createForm() {

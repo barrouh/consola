@@ -23,6 +23,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
+import { DeleteDialogComponent } from './shared/component/delete-dialog/delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { LayoutComponent } from './layout/layout.component';
     HeaderComponent,
     FooterComponent,
     LoginComponent,
+    DeleteDialogComponent,
   ],
   imports: [
     BrowserModule,

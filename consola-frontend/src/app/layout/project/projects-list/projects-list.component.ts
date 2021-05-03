@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Router, ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { DeleteDialogComponent } from 'src/app/shared/component/delete-dialog/delete-dialog.component';
 import { Project } from 'src/app/shared/model/project';
 import { ProjectService } from 'src/app/shared/service/project.service';
 import { ProjectComponent } from '../project/project.component';
@@ -12,6 +12,9 @@ import { ProjectComponent } from '../project/project.component';
   styleUrls: ['./projects-list.component.css'],
 })
 export class ProjectsListComponent implements OnInit {
+  // declartion
+  public projectsList: Project[] = [];
+
   displayedColumns = [
     'status',
     'name',
@@ -21,15 +24,10 @@ export class ProjectsListComponent implements OnInit {
     'action',
   ];
 
-  // declartion
-  public projectsList: Project[] = [];
-
   constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
     private projectService: ProjectService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -46,9 +44,26 @@ export class ProjectsListComponent implements OnInit {
   // change methods
 
   // actions methods
+  addProject(): void {
+    let dialogRef = this.dialog.open(ProjectComponent, {
+      data: {
+        action: 'Add',
+      },
+      width: '600px',
+      disableClose: true,
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.loadProjects();
+    });
+  }
+
   editProject(id: number) {
     let dialogRef = this.dialog.open(ProjectComponent, {
-      data: id,
+      data: {
+        id,
+        action: 'Edit',
+      },
       disableClose: true,
       width: '600px',
     });
@@ -56,19 +71,20 @@ export class ProjectsListComponent implements OnInit {
       this.loadProjects();
     });
   }
+
   deleteProject(id: number) {
-    this.projectService.deleteProjectByid(id).subscribe((data: any) => {
-      this.loadProjects();
-    });
-  }
-
-  openProjectDialog(): void {
-    let dialogRef = this.dialog.open(ProjectComponent, {
-      width: '600px',
+    let dialogRef = this.dialog.open(DeleteDialogComponent, {
+      data: {
+        id,
+      },
       disableClose: true,
+      width: '400px',
     });
 
     dialogRef.afterClosed().subscribe(() => {
+      this.snackBar.open('Project deleted successfully', '', {
+        duration: 2000,
+      });
       this.loadProjects();
     });
   }
