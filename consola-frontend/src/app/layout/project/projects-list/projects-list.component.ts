@@ -20,36 +20,6 @@ export class ProjectsListComponent implements OnInit {
     'endDate',
     'action',
   ];
-  dataSource = [
-    {
-      status: 'test1',
-      name: 'test2',
-      shortName: 'test3',
-      startDate: 'test4',
-      endDate: 'test5',
-    },
-    {
-      status: 'test1',
-      name: 'test2',
-      shortName: 'test3',
-      startDate: 'test4',
-      endDate: 'test5',
-    },
-    {
-      status: 'test1',
-      name: 'test2',
-      shortName: 'test3',
-      startDate: 'test4',
-      endDate: 'test5',
-    },
-    {
-      status: 'test1',
-      name: 'test2',
-      shortName: 'test3',
-      startDate: 'test4',
-      endDate: 'test5',
-    },
-  ];
 
   // declartion
   public projectsList: Project[] = [];
@@ -76,12 +46,30 @@ export class ProjectsListComponent implements OnInit {
   // change methods
 
   // actions methods
-  editProject() {}
-  deleteProject() {}
+  editProject(id: number) {
+    let dialogRef = this.dialog.open(ProjectComponent, {
+      data: id,
+      disableClose: true,
+      width: '600px',
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.loadProjects();
+    });
+  }
+  deleteProject(id: number) {
+    this.projectService.deleteProjectByid(id).subscribe((data: any) => {
+      this.loadProjects();
+    });
+  }
 
   openProjectDialog(): void {
-    this.dialog.open(ProjectComponent, {
+    let dialogRef = this.dialog.open(ProjectComponent, {
       width: '600px',
+      disableClose: true,
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.loadProjects();
     });
   }
 }

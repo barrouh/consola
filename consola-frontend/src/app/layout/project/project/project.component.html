@@ -9,7 +9,7 @@
         name="status"
         formControlName="status"
       >
-        <mat-option *ngFor="let s of statusList" [value]="s">
+        <mat-option *ngFor="let s of statusList" [value]="s.id">
           {{ s.name }}
         </mat-option>
       </mat-select>
@@ -23,6 +23,7 @@
         required
         name="name"
         formControlName="name"
+        autocomplete="off"
       />
     </mat-form-field>
     <mat-form-field>
@@ -33,6 +34,7 @@
         required
         name="shortName"
         formControlName="shortName"
+        autocomplete="off"
       />
     </mat-form-field>
     <mat-form-field appearance="fill">
@@ -42,8 +44,14 @@
           matStartDate
           formControlName="startDate"
           placeholder="Start date"
+          autocomplete="off"
         />
-        <input matEndDate formControlName="endDate" placeholder="End date" />
+        <input
+          matEndDate
+          formControlName="endDate"
+          placeholder="End date"
+          autocomplete="off"
+        />
       </mat-date-range-input>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-date-range-picker #picker></mat-date-range-picker>
@@ -53,7 +61,7 @@
       mat-raised-button
       color="primary"
       [disabled]="projectForm.invalid"
-      (click)="addProject()"
+      (click)="saveProject()"
     >
       Save
     </button>

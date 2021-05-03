@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Project } from 'src/app/shared/model/project';
 import { Status } from 'src/app/shared/model/status';
 import { ProjectService } from 'src/app/shared/service/project.service';
@@ -19,12 +20,14 @@ export class ProjectComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private statusService: StatusService,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   ngOnInit(): void {
     this.createForm();
     this.loadStatus();
+    this.loadProjectById(this.data);
   }
 
   createForm() {
@@ -44,9 +47,21 @@ export class ProjectComponent implements OnInit {
     });
   }
 
-  addProject() {
-    this.projectObj = new Project();
-    this.projectObj.status = this.projectForm.controls.status.value;
+  loadProjectById(id: number) {
+    this.projectService.getProjectByid(id).subscribe((data: Project) => {
+      this.projectObj = new Project();
+      this.projectObj = data;
+      this.projectForm.controls.status.setValue(this.projectObj.status?.id);
+      this.projectForm.controls.name.setValue(this.projectObj.name);
+      this.projectForm.controls.shortName.setValue(this.projectObj.shortName);
+      this.projectForm.controls.startDate.setValue(this.projectObj.startDate);
+      this.projectForm.controls.endDate.setValue(this.projectObj.endDate);
+    });
+  }
+
+  // actions methods
+  saveProject() {
+    this.projectObj.status = new Status(this.projectForm.controls.status.value);
     this.projectObj.name = this.projectForm.controls.name.value;
     this.projectObj.shortName = this.projectForm.controls.shortName.value;
     this.projectObj.startDate = this.projectForm.controls.startDate.value;
@@ -54,6 +69,6 @@ export class ProjectComponent implements OnInit {
 
     this.projectService
       .saveProject(this.projectObj)
-      .subscribe((data: Project[]) => {});
+      .subscribe((data: Project) => {});
   }
 }

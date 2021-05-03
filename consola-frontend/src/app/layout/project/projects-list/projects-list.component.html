@@ -72,10 +72,18 @@
                 <ng-container matColumnDef="action">
                   <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
                   <mat-cell class="duration-cell" *matCellDef="let project"
-                    ><button mat-icon-button (click)="editProject()">
+                    ><button
+                      mat-icon-button
+                      matTooltip="Edit project"
+                      (click)="editProject(project.id)"
+                    >
                       <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-icon-button (click)="deleteProject()">
+                    <button
+                      mat-icon-button
+                      matTooltip="Delete project"
+                      (click)="deleteProject(project.id)"
+                    >
                       <mat-icon>delete</mat-icon>
                     </button>
                   </mat-cell>

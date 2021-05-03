@@ -29,6 +29,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -62,9 +63,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatFormFieldModule,
     ReactiveFormsModule,
     CommonModule,
-    MatDatepickerModule,        // <----- import(must)
-    MatNativeDateModule,        // <----- import for date formating(optional)
-
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [LayoutComponent],
