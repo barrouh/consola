@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { DeleteDialogComponent } from 'src/app/shared/component/delete-dialog/delete-dialog.component';
+import { DeleteDialogComponent } from 'src/app/shared/component/project/delete-dialog/delete-dialog.component';
 import { Project } from 'src/app/shared/model/project';
 import { ProjectService } from 'src/app/shared/service/project.service';
 import { ProjectComponent } from '../project/project.component';
@@ -54,6 +54,9 @@ export class ProjectsListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
+      this.snackBar.open('Project added successfully', '', {
+        duration: 3000,
+      });
       this.loadProjects();
     });
   }
@@ -68,6 +71,9 @@ export class ProjectsListComponent implements OnInit {
       width: '600px',
     });
     dialogRef.afterClosed().subscribe(() => {
+      this.snackBar.open('Project updated successfully', '', {
+        duration: 3000,
+      });
       this.loadProjects();
     });
   }
@@ -83,7 +89,7 @@ export class ProjectsListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(() => {
       this.snackBar.open('Project deleted successfully', '', {
-        duration: 2000,
+        duration: 3000,
       });
       this.loadProjects();
     });

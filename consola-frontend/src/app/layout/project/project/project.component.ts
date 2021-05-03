@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Project } from 'src/app/shared/model/project';
 import { Status } from 'src/app/shared/model/status';
 import { ProjectService } from 'src/app/shared/service/project.service';
@@ -21,6 +21,8 @@ export class ProjectComponent implements OnInit {
     private formBuilder: FormBuilder,
     private statusService: StatusService,
     private projectService: ProjectService,
+    public dialogRef: MatDialogRef<ProjectComponent>,
+
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
@@ -67,8 +69,8 @@ export class ProjectComponent implements OnInit {
     this.projectObj.startDate = this.projectForm.controls.startDate.value;
     this.projectObj.endDate = this.projectForm.controls.endDate.value;
 
-    this.projectService
-      .saveProject(this.projectObj)
-      .subscribe((data: Project) => {});
+    this.projectService.saveProject(this.projectObj).subscribe((data: any) => {
+      this.dialogRef.close();
+    });
   }
 }
