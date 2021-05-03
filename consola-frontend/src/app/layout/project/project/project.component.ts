@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Project } from 'src/app/shared/model/project';
 import { Status } from 'src/app/shared/model/status';
 import { ProjectService } from 'src/app/shared/service/project.service';
@@ -22,7 +23,7 @@ export class ProjectComponent implements OnInit {
     private statusService: StatusService,
     private projectService: ProjectService,
     public dialogRef: MatDialogRef<ProjectComponent>,
-
+    private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
@@ -71,6 +72,10 @@ export class ProjectComponent implements OnInit {
 
     this.projectService.saveProject(this.projectObj).subscribe((data: any) => {
       this.dialogRef.close();
+
+      this.snackBar.open(this.data.snackMessage, '', {
+        duration: 3000,
+      });
     });
   }
 }

@@ -48,15 +48,13 @@ export class ProjectsListComponent implements OnInit {
     let dialogRef = this.dialog.open(ProjectComponent, {
       data: {
         action: 'Add',
+        snackMessage: 'Project added successfully',
       },
       width: '600px',
       disableClose: true,
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.snackBar.open('Project added successfully', '', {
-        duration: 3000,
-      });
       this.loadProjects();
     });
   }
@@ -66,14 +64,12 @@ export class ProjectsListComponent implements OnInit {
       data: {
         id,
         action: 'Edit',
+        snackMessage: 'Project updated successfully',
       },
       disableClose: true,
       width: '600px',
     });
     dialogRef.afterClosed().subscribe(() => {
-      this.snackBar.open('Project updated successfully', '', {
-        duration: 3000,
-      });
       this.loadProjects();
     });
   }
