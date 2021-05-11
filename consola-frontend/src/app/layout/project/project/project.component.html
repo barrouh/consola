@@ -9,10 +9,17 @@
         name="status"
         formControlName="status"
       >
-        <mat-option *ngFor="let s of statusList" [value]="s.id">
+        <mat-option
+          style="background-color: white; color: steelblue"
+          *ngFor="let s of statusList"
+          [value]="s.id"
+        >
           {{ s.name }}
         </mat-option>
       </mat-select>
+      <mat-error *ngIf="projectForm.controls.status.hasError('required')"
+        >Please choose a status</mat-error
+      >
     </mat-form-field>
 
     <mat-form-field>
@@ -25,6 +32,9 @@
         formControlName="name"
         autocomplete="off"
       />
+      <mat-error *ngIf="projectForm.controls.name.hasError('required')"
+        >Please fill the name</mat-error
+      >
     </mat-form-field>
     <mat-form-field>
       <input
@@ -36,7 +46,11 @@
         formControlName="shortName"
         autocomplete="off"
       />
+      <mat-error *ngIf="projectForm.controls.shortName.hasError('required')"
+        >Please fill the short name</mat-error
+      >
     </mat-form-field>
+    <br />
     <mat-form-field appearance="fill">
       <mat-label>Enter a date range</mat-label>
       <mat-date-range-input [rangePicker]="picker">
@@ -52,6 +66,13 @@
           placeholder="End date"
           autocomplete="off"
         />
+        <mat-error
+          *ngIf="
+            projectForm.controls.startDate.hasError('required') ||
+            projectForm.controls.endDate.hasError('required')
+          "
+          >Please fill the short name</mat-error
+        >
       </mat-date-range-input>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-date-range-picker #picker></mat-date-range-picker>

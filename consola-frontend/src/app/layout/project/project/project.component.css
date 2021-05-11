@@ -3,7 +3,7 @@
   flex-direction: column;
 }
 
-.cutom-form> * {
+.cutom-form > * {
   width: 100%;
 }
 
@@ -17,4 +17,8 @@
   color: steelblue;
   height: 40px;
   background-color: white;
+}
+
+.mat-error {
+  color: white;
 }
