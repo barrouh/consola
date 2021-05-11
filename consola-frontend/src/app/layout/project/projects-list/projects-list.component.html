@@ -10,18 +10,18 @@
         class="content"
       ></div>
     </div>
-    <br />
     <div class="container">
       <div fxLayout="row" fxLayoutAlign="center center" class="content">
         <mat-card class="card">
           <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
             <div class="blocks">
               <button
-                mat-raised-button
+                mat-icon-button
                 class="mat-raised-button-custom"
+                matTooltip="Add project"
                 (click)="addProject()"
               >
-                <mat-icon>add</mat-icon> Add Project
+                <mat-icon>add</mat-icon>
               </button>
             </div>
             <h3 class="table-title">Projects management</h3>
@@ -29,23 +29,44 @@
           <br />
           <mat-card-content>
             <div class="mat-elevation-z8">
-              <mat-table #table [dataSource]="projectsList">
+              <div fxLayout class="parent-filter-input"  fxLayoutAlign="center center">
+                <mat-form-field class="mat-form-field-filter-input" fxFlex="40%">
+                  <input
+                    matInput
+                    type="text"
+                    (keyup)="filterProjects($event)"
+                    placeholder="Filter"
+                    class="filter-input"
+                  />
+                </mat-form-field>
+              </div>
+              <mat-table
+                mat-table
+                matSort
+                matTableFilter
+                [dataSource]="dataSource"
+                (matSortChange)="sortProjects($event)"
+              >
                 <ng-container matColumnDef="status">
-                  <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header
+                    >Status</mat-header-cell
+                  >
                   <mat-cell *matCellDef="let project">{{
                     project.status.name
                   }}</mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="name">
-                  <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header
+                    >Name</mat-header-cell
+                  >
                   <mat-cell *matCellDef="let project">{{
                     project.name
                   }}</mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="shortName">
-                  <mat-header-cell *matHeaderCellDef
+                  <mat-header-cell *matHeaderCellDef mat-sort-header
                     >Short name</mat-header-cell
                   >
                   <mat-cell *matCellDef="let project">{{
@@ -54,7 +75,7 @@
                 </ng-container>
 
                 <ng-container matColumnDef="startDate">
-                  <mat-header-cell *matHeaderCellDef
+                  <mat-header-cell *matHeaderCellDef mat-sort-header
                     >Start date</mat-header-cell
                   >
                   <mat-cell class="duration-cell" *matCellDef="let project">{{
@@ -63,7 +84,9 @@
                 </ng-container>
 
                 <ng-container matColumnDef="endDate">
-                  <mat-header-cell *matHeaderCellDef>End date</mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header
+                    >End date</mat-header-cell
+                  >
                   <mat-cell class="duration-cell" *matCellDef="let project">{{
                     project.endDate
                   }}</mat-cell>

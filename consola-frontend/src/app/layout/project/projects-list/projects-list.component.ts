@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { DeleteDialogComponent } from 'src/app/shared/component/project/delete-dialog/delete-dialog.component';
 import { Project } from 'src/app/shared/model/project';
 import { ProjectService } from 'src/app/shared/service/project.service';
@@ -14,9 +15,11 @@ import { ProjectComponent } from '../project/project.component';
 })
 export class ProjectsListComponent implements OnInit {
   // declartion
-  public projectsList: Project[] = [];
+  dataSource = new MatTableDataSource<Project>();
+
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   displayedColumns = [
     'status',
@@ -47,7 +50,7 @@ export class ProjectsListComponent implements OnInit {
       this.projectService
         .getAllProjects(event.pageIndex, event.pageSize)
         .subscribe((data: any) => {
-          this.projectsList = data.content;
+          this.dataSource.data = data.content;
           this.pageIndex = data.number;
           this.pageSize = data.size;
           this.length = data.totalElements;
@@ -60,7 +63,7 @@ export class ProjectsListComponent implements OnInit {
     this.projectService
       .getAllProjects(this.pageIndex, this.pageSize)
       .subscribe((data: any) => {
-        this.projectsList = data.content;
+        this.dataSource.data = data.content;
         this.pageIndex = data.number;
         this.pageSize = data.size;
         this.length = data.totalElements;
@@ -68,6 +71,13 @@ export class ProjectsListComponent implements OnInit {
   }
 
   // change methods
+  sortProjects(sort: Sort) {
+    this.dataSource.sort = this.sort;
+  }
+
+  filterProjects(event: any) {
+    this.dataSource.filter = event.target.value.trim().toLocaleLowerCase();
+  }
 
   // actions methods
   addProject(): void {
