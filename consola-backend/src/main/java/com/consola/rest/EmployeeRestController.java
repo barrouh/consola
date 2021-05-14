@@ -17,39 +17,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.consola.dto.VacationDTO;
-import com.consola.model.Vacation;
-import com.consola.repositories.VacationRepository;
+import com.consola.dto.EmployeeDTO;
+import com.consola.model.Employee;
+import com.consola.repositories.EmployeeRepository;
 
 @RestController
-@RequestMapping("/api/vacations")
-public class VacationRestController {
+@RequestMapping("/api/employees")
+public class EmployeeRestController {
 
 	@Autowired
-	private VacationRepository vacationRepository;
+	private EmployeeRepository employeeRepository;
 
 	private ModelMapper mapper = new ModelMapper();
 	
 	@GetMapping("")
-	public ResponseEntity<Page<Vacation>> vacations(
+	public ResponseEntity<Page<Employee>> employees(
 			@RequestParam(name = "pageSize", defaultValue = "10", required = false) Integer pageSize,
 			@RequestParam(name = "pageIndex", defaultValue = "0", required = false) Integer pageIndex) {
-		return new ResponseEntity<>(vacationRepository.findAll(PageRequest.of(pageIndex, pageSize)), HttpStatus.OK);
+		return new ResponseEntity<>(employeeRepository.findAll(PageRequest.of(pageIndex, pageSize)), HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
-	public Optional<Vacation> vacationById(@PathVariable("id") int id) {
-		return vacationRepository.findById(id);
+	public Optional<Employee> employeeById(@PathVariable("id") String id) {
+		return employeeRepository.findById(id);
 	}
 
 	@PostMapping("/save")
-	public Vacation saveVacation(@RequestBody VacationDTO vacation) {
-		return vacationRepository.saveAndFlush(mapper.map(vacation, Vacation.class));
+	public Employee saveEmployee(@RequestBody EmployeeDTO employee) {
+		return employeeRepository.saveAndFlush(mapper.map(employee, Employee.class));
 	}
 
 	@DeleteMapping("/{id}")
-	public void deleteVacationById(@PathVariable("id") int id) {
-		vacationRepository.deleteById(id);
+	public void deleteEmployeeById(@PathVariable("id") String id) {
+		employeeRepository.deleteById(id);
 	}
 
 }
