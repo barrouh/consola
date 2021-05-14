@@ -22,7 +22,7 @@ public class Employee implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String username;
-	private Employee employee;
+	private Employee responsible;
 	private Role role;
 	private String password;
 	private String fullName;
@@ -47,12 +47,12 @@ public class Employee implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "responsible")
-	public Employee getEmployee() {
-		return this.employee;
+	public Employee getResponsible() {
+		return this.responsible;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setResponsible(Employee responsible) {
+		this.responsible = responsible;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
