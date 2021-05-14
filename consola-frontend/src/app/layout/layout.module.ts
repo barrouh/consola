@@ -30,6 +30,12 @@ import { CommonModule } from '@angular/common';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { StatusListComponent } from './status/status-list/status-list.component';
+import { StatusComponent } from './status/status/status.component';
+import { RoleComponent } from './role/role/role.component';
+import { RoleListComponent } from './role/role-list/role-list.component';
+import { VacationStatusComponent } from './vacation-status/vacation-status/vacation-status.component';
+import { VacationStatusListComponent } from './vacation-status/vacation-status-list/vacation-status-list.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +46,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     NotificationComponent,
     SupervisorComponent,
     ContactComponent,
+    StatusComponent,
+    StatusListComponent,
+    RoleComponent,
+    RoleListComponent,
+    VacationStatusComponent,
+    VacationStatusListComponent,
   ],
   imports: [
     LayoutRoutingModule,

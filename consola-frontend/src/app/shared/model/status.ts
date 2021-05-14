@@ -1,6 +1,6 @@
 export class Status {
-  public id: number | undefined;
-  public name: string | undefined;
+  public id: number;
+  public name!: string;
 
   constructor(id: number) {
     this.id = id;
