@@ -17,8 +17,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { EmployeeComponent } from './employee/employee.component';
-import { NotificationComponent } from './notification/notification.component';
 import { SupervisorComponent } from './supervisor/supervisor.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProjectsListComponent } from './project/projects-list/projects-list.component';
@@ -36,14 +34,17 @@ import { RoleComponent } from './role/role/role.component';
 import { RoleListComponent } from './role/role-list/role-list.component';
 import { VacationStatusComponent } from './vacation-status/vacation-status/vacation-status.component';
 import { VacationStatusListComponent } from './vacation-status/vacation-status-list/vacation-status-list.component';
+import { EmployeeListComponent } from './employee/employee-list/employee-list.component';
+import { EmployeeComponent } from './employee/employee/employee.component';
+import { NotificationListComponent } from './notification/notification-list/notification-list.component';
+import { VacationListComponent } from './vacation/vacation-list/vacation-list.component';
+import { VacationComponent } from './vacation/vacation/vacation.component';
 
 @NgModule({
   declarations: [
     LandingPageComponent,
     ProjectsListComponent,
     ProjectComponent,
-    EmployeeComponent,
-    NotificationComponent,
     SupervisorComponent,
     ContactComponent,
     StatusComponent,
@@ -52,6 +53,11 @@ import { VacationStatusListComponent } from './vacation-status/vacation-status-l
     RoleListComponent,
     VacationStatusComponent,
     VacationStatusListComponent,
+    EmployeeListComponent,
+    EmployeeComponent,
+    NotificationListComponent,
+    VacationListComponent,
+    VacationComponent,
   ],
   imports: [
     LayoutRoutingModule,
