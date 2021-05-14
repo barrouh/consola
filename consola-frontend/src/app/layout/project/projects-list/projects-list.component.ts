@@ -114,6 +114,7 @@ export class ProjectsListComponent implements OnInit {
     let dialogRef = this.dialog.open(DeleteDialogComponent, {
       data: {
         id,
+        entity:'project',
         snackMessage: 'Project deleted successfully',
       },
       disableClose: true,

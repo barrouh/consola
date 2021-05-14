@@ -9,7 +9,13 @@ import { Status } from '../model/status';
 export class StatusService {
   private url: string = 'http://localhost:8080/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
+
+  getAllStatusPg(pageIndex: number, pageSize: number): any {
+    return this.http.get(
+      this.url + 'api/status?pageIndex=' + pageIndex + '&pageSize=' + pageSize
+    );
+  }
 
   getAllStatus(): any {
     return this.http.get(this.url + 'api/status');

@@ -1,6 +1,5 @@
 package com.consola.rest;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;

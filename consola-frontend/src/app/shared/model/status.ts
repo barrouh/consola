@@ -1,8 +1,10 @@
 export class Status {
-  public id: number;
+  public id!: number;
   public name!: string;
 
-  constructor(id: number) {
-    this.id = id;
+  constructor(id?: number) {
+    if (id) {
+      this.id = id;
+    }
   }
 }
