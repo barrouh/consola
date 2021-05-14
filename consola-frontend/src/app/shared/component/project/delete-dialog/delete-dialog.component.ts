@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProjectService } from '../../../service/project.service';
 import { StatusService } from '../../../service/status.service';
+import { VacationStatusService } from 'src/app/shared/service/vacation-status.service';
 
 @Component({
   selector: 'app-delete-dialog',
@@ -13,6 +14,7 @@ export class DeleteDialogComponent implements OnInit {
   constructor(
     private projectService: ProjectService,
     private statusService: StatusService,
+    private vacationStatusService: VacationStatusService,
     public dialogRef: MatDialogRef<DeleteDialogComponent>,
     private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -45,4 +47,16 @@ export class DeleteDialogComponent implements OnInit {
         this.dialogRef.close();
       });
   }
+
+  deleteVacationStatus() {
+    this.vacationStatusService.deleteStatusByid(this.data.id)
+      .subscribe((data: any) => {
+        this.snackBar.open(this.data.snackMessage, '', {
+          duration: 3000,
+        });
+        this.dialogRef.close();
+      });
+  }
+
+  
 }
