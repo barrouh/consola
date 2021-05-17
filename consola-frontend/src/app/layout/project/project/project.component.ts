@@ -30,7 +30,9 @@ export class ProjectComponent implements OnInit {
   ngOnInit(): void {
     this.createForm();
     this.loadStatus();
-    this.loadProjectById(this.data.id);
+    if(this.data.id){
+      this.loadProjectById(this.data.id);
+    }
   }
 
   createForm() {
@@ -45,8 +47,8 @@ export class ProjectComponent implements OnInit {
 
   // load methods
   loadStatus() {
-    this.statusService.getAllStatus().subscribe((data: Status[]) => {
-      this.statusList = data;
+    this.statusService.getAllStatus().subscribe((data: any) => {
+      this.statusList = data.content;
     });
   }
 

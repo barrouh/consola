@@ -130,7 +130,7 @@ public class Employee implements java.io.Serializable {
 		this.currentBalance = currentBalance;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "responsible")
 	public Set<Employee> getEmployees() {
 		return this.employees;
 	}
