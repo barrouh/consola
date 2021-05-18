@@ -11,8 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "Role", catalog = "consola")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Role implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -40,6 +44,7 @@ public class Role implements java.io.Serializable {
 		this.name = name;
 	}
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
 	public Set<Employee> getEmployees() {
 		return this.employees;

@@ -2,6 +2,7 @@ package com.consola.rest;
 
 import java.util.Optional;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,7 +30,7 @@ public class EmployeeRestController {
 	private EmployeeRepository employeeRepository;
 
 	private ModelMapper mapper = new ModelMapper();
-	
+
 	@GetMapping("")
 	public ResponseEntity<Page<Employee>> employees(
 			@RequestParam(name = "pageSize", defaultValue = "10", required = false) Integer pageSize,
@@ -44,6 +45,12 @@ public class EmployeeRestController {
 
 	@PostMapping("/save")
 	public Employee saveEmployee(@RequestBody EmployeeDTO employee) {
+		// generate password
+		int length = 10;
+		boolean useLetters = true;
+		boolean useNumbers = false;
+		String password = RandomStringUtils.random(length, useLetters, useNumbers);
+		employee.setPassword(password);
 		return employeeRepository.saveAndFlush(mapper.map(employee, Employee.class));
 	}
 

@@ -27,12 +27,12 @@ export class EmployeeListComponent implements OnInit {
     'fullName',
     'email',
     'role',
-    /*'responsible',
+    'responsible',
     'joinDate',
     'leaveDate',
     'initialBalance',
     'currentBalance',
-    'action',*/
+    'action',
   ];
 
   //paginator parameters

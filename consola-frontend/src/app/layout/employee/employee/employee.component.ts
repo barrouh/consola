@@ -44,9 +44,9 @@ export class EmployeeComponent implements OnInit {
       fullName: [null, [Validators.required]],
       email: [null, [Validators.required]],
       role: [null, [Validators.required]],
-      responsible: [null, [Validators.required]],
+      responsible: [null, []],
       joinDate: [null, [Validators.required]],
-      leaveDate: [null, [Validators.required]],
+      leaveDate: [null, []],
       initialBalance: [null, [Validators.required]],
       currentBalance: [null, [Validators.required]],
     });
@@ -72,8 +72,10 @@ export class EmployeeComponent implements OnInit {
       this.employeeForm.controls.username.setValue(this.employeeObj.username);
       this.employeeForm.controls.fullName.setValue(this.employeeObj.fullName);
       this.employeeForm.controls.email.setValue(this.employeeObj.email);
-      this.employeeForm.controls.role.setValue(this.employeeObj.role);
-      this.employeeForm.controls.responsible.setValue(this.employeeObj.responsible);
+      this.employeeForm.controls.role.setValue(this.employeeObj.role.id);
+      if(this.employeeObj.responsible){
+        this.employeeForm.controls.responsible.setValue(this.employeeObj.responsible.username);
+      }
       this.employeeForm.controls.joinDate.setValue(this.employeeObj.joinDate);
       this.employeeForm.controls.leaveDate.setValue(this.employeeObj.leaveDate);
       this.employeeForm.controls.initialBalance.setValue(this.employeeObj.initialBalance);
@@ -87,7 +89,9 @@ export class EmployeeComponent implements OnInit {
     this.employeeObj.fullName = this.employeeForm.controls.fullName.value;
     this.employeeObj.email = this.employeeForm.controls.email.value;
     this.employeeObj.role = new Role(this.employeeForm.controls.role.value);
-    this.employeeObj.responsible = new Employee(this.employeeForm.controls.responsible.value);
+    if(this.employeeForm.controls.responsible.value){
+      this.employeeObj.responsible = new Employee(this.employeeForm.controls.responsible.value);
+    }
     this.employeeObj.joinDate = this.employeeForm.controls.joinDate.value;
     this.employeeObj.leaveDate = this.employeeForm.controls.leaveDate.value;
     this.employeeObj.initialBalance = this.employeeForm.controls.initialBalance.value;

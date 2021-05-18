@@ -16,6 +16,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "Employee", catalog = "consola")
 public class Employee implements java.io.Serializable {
@@ -130,6 +132,7 @@ public class Employee implements java.io.Serializable {
 		this.currentBalance = currentBalance;
 	}
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "responsible")
 	public Set<Employee> getEmployees() {
 		return this.employees;
@@ -139,6 +142,7 @@ public class Employee implements java.io.Serializable {
 		this.employees = employees;
 	}
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
 	public Set<Vacation> getVacations() {
 		return this.vacations;
@@ -148,6 +152,7 @@ public class Employee implements java.io.Serializable {
 		this.vacations = vacations;
 	}
 
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "Project_Employee", catalog = "consola", joinColumns = {
 			@JoinColumn(name = "employeeId", nullable = false, updatable = false) }, inverseJoinColumns = {

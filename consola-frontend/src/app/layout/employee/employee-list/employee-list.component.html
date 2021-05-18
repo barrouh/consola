@@ -80,7 +80,54 @@
                       >Role</mat-header-cell
                     >
                     <mat-cell class="duration-cell" *matCellDef="let employee">{{
-                      employee.role
+                      employee.role.name
+                    }}</mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="responsible">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header
+                      >Responsible</mat-header-cell
+                    >
+                    <mat-cell class="duration-cell" *matCellDef="let employee">
+                      <p *ngIf="employee.responsible">
+                        {{employee.responsible.fullName}}
+                      </p>
+                    </mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="joinDate">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header
+                      >Join Date</mat-header-cell
+                    >
+                    <mat-cell class="duration-cell" *matCellDef="let employee">{{
+                      employee.joinDate
+                    }}</mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="leaveDate">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header
+                      >Leave Date</mat-header-cell
+                    >
+                    <mat-cell class="duration-cell" *matCellDef="let employee">{{
+                      employee.leaveDate
+                    }}</mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="initialBalance">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header
+                      >Initial Balance</mat-header-cell
+                    >
+                    <mat-cell class="duration-cell" *matCellDef="let employee">{{
+                      employee.initialBalance
+                    }}</mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="currentBalance">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header
+                      >Current Balance</mat-header-cell
+                    >
+                    <mat-cell class="duration-cell" *matCellDef="let employee">{{
+                      employee.currentBalance
                     }}</mat-cell>
                   </ng-container>
   
