@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -33,8 +32,6 @@ public class Employee implements java.io.Serializable {
 	private Date leaveDate;
 	private float initialBalance;
 	private float currentBalance;
-	private Set<Employee> employees = new HashSet<>(0);
-	private Set<Vacation> vacations = new HashSet<>(0);
 	private Set<Project> projects = new HashSet<>(0);
 
 	@Id
@@ -130,26 +127,6 @@ public class Employee implements java.io.Serializable {
 
 	public void setCurrentBalance(float currentBalance) {
 		this.currentBalance = currentBalance;
-	}
-
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "responsible")
-	public Set<Employee> getEmployees() {
-		return this.employees;
-	}
-
-	public void setEmployees(Set<Employee> employees) {
-		this.employees = employees;
-	}
-
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
-	public Set<Vacation> getVacations() {
-		return this.vacations;
-	}
-
-	public void setVacations(Set<Vacation> vacations) {
-		this.vacations = vacations;
 	}
 
 	@JsonIgnore

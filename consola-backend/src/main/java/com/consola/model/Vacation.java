@@ -1,8 +1,6 @@
 package com.consola.model;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,8 +25,6 @@ public class Vacation implements java.io.Serializable {
 	private Date endDate;
 	private float duration;
 	private String comment;
-	private Set<Notification> notifications = new HashSet<>(0);
-	private Set<VacationStatusVacation> vacationStatusVacations = new HashSet<>(0);
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -98,24 +93,6 @@ public class Vacation implements java.io.Serializable {
 
 	public void setComment(String comment) {
 		this.comment = comment;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "vacation")
-	public Set<Notification> getNotifications() {
-		return this.notifications;
-	}
-
-	public void setNotifications(Set<Notification> notifications) {
-		this.notifications = notifications;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "vacation")
-	public Set<VacationStatusVacation> getVacationStatusVacations() {
-		return this.vacationStatusVacations;
-	}
-
-	public void setVacationStatusVacations(Set<VacationStatusVacation> vacationStatusVacations) {
-		this.vacationStatusVacations = vacationStatusVacations;
 	}
 
 }
