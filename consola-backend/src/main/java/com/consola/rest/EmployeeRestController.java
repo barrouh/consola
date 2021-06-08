@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.consola.dto.EmployeeDTO;
+import com.consola.dto.LoginForm;
 import com.consola.model.Employee;
 import com.consola.repositories.EmployeeRepository;
 
@@ -36,6 +37,11 @@ public class EmployeeRestController {
 			@RequestParam(name = "pageSize", defaultValue = "10", required = false) Integer pageSize,
 			@RequestParam(name = "pageIndex", defaultValue = "0", required = false) Integer pageIndex) {
 		return new ResponseEntity<>(employeeRepository.findAll(PageRequest.of(pageIndex, pageSize)), HttpStatus.OK);
+	}
+	
+	@PostMapping("/login")
+	public Employee employeeLogin(@RequestBody LoginForm loginForm) {
+		return employeeRepository.findByUsernameAndPassword(loginForm.getUsername(), loginForm.getPassword());
 	}
 
 	@GetMapping("/{id}")

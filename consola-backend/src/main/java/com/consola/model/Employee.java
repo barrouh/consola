@@ -64,6 +64,7 @@ public class Employee implements java.io.Serializable {
 		this.role = role;
 	}
 
+	@JsonIgnore
 	@Column(name = "password", nullable = false)
 	public String getPassword() {
 		return this.password;

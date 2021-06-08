@@ -12,6 +12,6 @@ export class LoginService {
   constructor(private http: HttpClient) {}
 
   login(loginDTO: LoginDTO): any {
-    return this.http.post(this.url + 'login', loginDTO);
+    return this.http.post(this.url + 'api/employees/login', loginDTO);
   }
 }
