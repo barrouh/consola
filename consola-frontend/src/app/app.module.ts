@@ -24,6 +24,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import { DeleteDialogComponent } from './shared/component/project/delete-dialog/delete-dialog.component';
+import { InvalidLoginComponent } from './shared/component/project/invalid-login/invalid-login.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { DeleteDialogComponent } from './shared/component/project/delete-dialog/
     FooterComponent,
     LoginComponent,
     DeleteDialogComponent,
+    InvalidLoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +58,7 @@ import { DeleteDialogComponent } from './shared/component/project/delete-dialog/
     MatInputModule,
     MatMenuModule,
     RouterModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent],

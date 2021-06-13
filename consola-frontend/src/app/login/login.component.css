@@ -15,7 +15,10 @@
 .mat-button {
   margin-top: 10px;
   width: 100%;
-  color:steelblue;
+  color: steelblue;
   height: 40px;
   background-color: white;
+}
+.mat-error {
+  color: white;
 }

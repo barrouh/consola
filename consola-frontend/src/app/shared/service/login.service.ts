@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { LoginDTO } from '../model/login-dto';
 
 @Injectable({
@@ -8,7 +7,8 @@ import { LoginDTO } from '../model/login-dto';
 })
 export class LoginService {
   private url: string = 'http://localhost:8080/';
-
+  public isAuthenticated=false;
+  
   constructor(private http: HttpClient) {}
 
   login(loginDTO: LoginDTO): any {

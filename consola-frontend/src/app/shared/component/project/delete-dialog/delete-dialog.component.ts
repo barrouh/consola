@@ -1,15 +1,15 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ProjectService } from '../../../service/project.service';
-import { StatusService } from '../../../service/status.service';
-import { VacationStatusService } from 'src/app/shared/service/vacation-status.service';
-import { RoleService } from 'src/app/shared/service/role.service';
+import { Component, Inject, OnInit } from "@angular/core";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { ProjectService } from "../../../service/project.service";
+import { StatusService } from "../../../service/status.service";
+import { VacationStatusService } from "src/app/shared/service/vacation-status.service";
+import { RoleService } from "src/app/shared/service/role.service";
 
 @Component({
-  selector: 'app-delete-dialog',
-  templateUrl: './delete-dialog.component.html',
-  styleUrls: ['./delete-dialog.component.css'],
+  selector: "app-delete-dialog",
+  templateUrl: "./delete-dialog.component.html",
+  styleUrls: ["./delete-dialog.component.css"],
 })
 export class DeleteDialogComponent implements OnInit {
   constructor(
@@ -22,8 +22,7 @@ export class DeleteDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
-  ngOnInit(): void {  
-  }
+  ngOnInit(): void {}
 
   cancel(): void {
     this.dialogRef.close();
@@ -33,7 +32,7 @@ export class DeleteDialogComponent implements OnInit {
     this.projectService
       .deleteProjectByid(this.data.id)
       .subscribe((data: any) => {
-        this.snackBar.open(this.data.snackMessage, '', {
+        this.snackBar.open(this.data.snackMessage, "", {
           duration: 3000,
         });
         this.dialogRef.close();
@@ -41,19 +40,19 @@ export class DeleteDialogComponent implements OnInit {
   }
 
   deleteStatus() {
-    this.statusService.deleteStatusByid(this.data.id)
-      .subscribe((data: any) => {
-        this.snackBar.open(this.data.snackMessage, '', {
-          duration: 3000,
-        });
-        this.dialogRef.close();
+    this.statusService.deleteStatusByid(this.data.id).subscribe((data: any) => {
+      this.snackBar.open(this.data.snackMessage, "", {
+        duration: 3000,
       });
+      this.dialogRef.close();
+    });
   }
 
   deleteVacationStatus() {
-    this.vacationStatusService.deleteStatusByid(this.data.id)
+    this.vacationStatusService
+      .deleteStatusByid(this.data.id)
       .subscribe((data: any) => {
-        this.snackBar.open(this.data.snackMessage, '', {
+        this.snackBar.open(this.data.snackMessage, "", {
           duration: 3000,
         });
         this.dialogRef.close();
@@ -61,14 +60,11 @@ export class DeleteDialogComponent implements OnInit {
   }
 
   deleteRole() {
-    this.roleService.deleteRoleByid(this.data.id)
-      .subscribe((data: any) => {
-        this.snackBar.open(this.data.snackMessage, '', {
-          duration: 3000,
-        });
-        this.dialogRef.close();
+    this.roleService.deleteRoleByid(this.data.id).subscribe((data: any) => {
+      this.snackBar.open(this.data.snackMessage, "", {
+        duration: 3000,
       });
+      this.dialogRef.close();
+    });
   }
-
-  
 }

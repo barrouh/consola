@@ -1,9 +1,13 @@
 package com.consola.dto;
 
-public class LoginForm {
+public class LoginDTO {
 
 	private String username;
 	private String password;
+
+	public LoginDTO() {
+		super();
+	}
 
 	public String getUsername() {
 		return username;
