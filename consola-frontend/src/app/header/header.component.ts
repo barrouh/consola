@@ -29,11 +29,6 @@ export class HeaderComponent implements OnInit {
       icon: "supervisor_account",
       routerLink: "/layout/supervisor",
     },
-    {
-      label: "Contact Support",
-      icon: "contact_support",
-      routerLink: "/layout/contact",
-    },
   ];
 
   constructor(private router: Router) {}
