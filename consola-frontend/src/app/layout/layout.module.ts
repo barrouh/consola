@@ -18,7 +18,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SupervisorComponent } from './supervisor/supervisor.component';
-import { ContactComponent } from './contact/contact.component';
 import { ProjectsListComponent } from './project/projects-list/projects-list.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -48,7 +47,6 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     ProjectsListComponent,
     ProjectComponent,
     SupervisorComponent,
-    ContactComponent,
     StatusComponent,
     StatusListComponent,
     RoleComponent,
