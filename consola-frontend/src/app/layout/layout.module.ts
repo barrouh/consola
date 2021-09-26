@@ -39,8 +39,6 @@ import { EmployeeComponent } from './employee/employee/employee.component';
 import { NotificationListComponent } from './notification/notification-list/notification-list.component';
 import { VacationListComponent } from './vacation/vacation-list/vacation-list.component';
 import { VacationComponent } from './vacation/vacation/vacation.component';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
   declarations: [
@@ -85,10 +83,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     MatDatepickerModule,
     MatNativeDateModule,
     MatTooltipModule,
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory,
-    }),
+
   ],
   providers: [],
   bootstrap: [LayoutComponent],
