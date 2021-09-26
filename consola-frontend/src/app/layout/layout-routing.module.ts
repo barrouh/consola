@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ContactComponent } from './contact/contact.component';
 import { EmployeeListComponent } from './employee/employee-list/employee-list.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LayoutComponent } from './layout.component';
@@ -25,6 +26,7 @@ const routes: Routes = [
       { path: 'employee', component: EmployeeListComponent },
       { path: 'notification', component: NotificationListComponent },
       { path: 'supervisor', component: SupervisorComponent },
+      { path: 'contact', component: ContactComponent },
       { path: '**', redirectTo: 'landing-page', pathMatch: 'full' },
     ],
   },
