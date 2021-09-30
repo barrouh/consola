@@ -8,6 +8,7 @@ import { MenuItem } from "src/app/shared/interface/menu-item";
   styleUrls: ["./header.component.css"],
 })
 export class HeaderComponent implements OnInit {
+
   menuItems: MenuItem[] = [
     {
       label: "Projects",
@@ -18,6 +19,26 @@ export class HeaderComponent implements OnInit {
       label: "Employees",
       icon: "people",
       routerLink: "/layout/employee",
+    },
+    {
+      label: "Roles",
+      icon: "people",
+      routerLink: "/layout/role",
+    },
+    {
+      label: "Status",
+      icon: "people",
+      routerLink: "/layout/status",
+    },
+    {
+      label: "Vacation",
+      icon: "people",
+      routerLink: "/layout/vacation",
+    },
+    {
+      label: "Vacation Status",
+      icon: "people",
+      routerLink: "/layout/vacation-status",
     },
     {
       label: "Notfications",
@@ -34,6 +55,14 @@ export class HeaderComponent implements OnInit {
       icon: "contact_support",
       routerLink: "/layout/contact",
     },
+  ];
+
+  menuItems2: MenuItem[] = [
+    {
+      label: "Notfications",
+      icon: "notifications",
+      routerLink: "/layout/notification",
+    }
   ];
 
   constructor(private router: Router) {}
