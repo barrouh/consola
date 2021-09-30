@@ -1,11 +1,7 @@
 <mat-toolbar fxLayout="row" class="mat-toolbar-custom">
   <mat-icon class="mr">home</mat-icon> <span fxFlex>Consola</span>
   <div *ngIf="isAuthenticated">
-    <button
-      mat-button
-      *ngFor="let item of menuItems"
-      (click)="redirctToRouterLink(item)"
-    >
+    <button mat-button *ngFor="let item of menuItems" (click)="redirctToRouterLink(item)">
       <mat-icon class="mr">{{ item.icon }}</mat-icon>
       {{ item.label }}
     </button>
