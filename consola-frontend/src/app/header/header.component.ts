@@ -8,7 +8,6 @@ import { MenuItem } from "src/app/shared/interface/menu-item";
   styleUrls: ["./header.component.css"],
 })
 export class HeaderComponent implements OnInit {
-
   menuItems: MenuItem[] = [
     {
       label: "Projects",
@@ -41,28 +40,10 @@ export class HeaderComponent implements OnInit {
       routerLink: "/layout/vacation-status",
     },
     {
-      label: "Notfications",
-      icon: "notifications",
-      routerLink: "/layout/notification",
-    },
-    {
       label: "Supervisor Account",
       icon: "supervisor_account",
       routerLink: "/layout/supervisor",
     },
-    {
-      label: "Contact Support",
-      icon: "contact_support",
-      routerLink: "/layout/contact",
-    },
-  ];
-
-  menuItems2: MenuItem[] = [
-    {
-      label: "Notfications",
-      icon: "notifications",
-      routerLink: "/layout/notification",
-    }
   ];
 
   constructor(private router: Router) {}
@@ -86,5 +67,12 @@ export class HeaderComponent implements OnInit {
   signOut() {
     window.sessionStorage.clear();
     this.router.navigateByUrl("/login");
+  }
+
+  redirectToHomePage() {
+    this.router.navigateByUrl("/layout/landing-page");
+  }
+  redirectToNotifications() {
+    this.router.navigateByUrl("/layout/notification");
   }
 }
