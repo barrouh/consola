@@ -2,15 +2,19 @@ package com.consola.dto;
 
 import java.util.Date;
 
+import com.consola.model.Employee;
+import com.consola.model.VacationStatus;
+
 public class VacationDTO {
 
 	private int id;
-	private String employeeId;
+	private Employee employee;
 	private Date requestDate;
 	private Date startDate;
 	private Date endDate;
 	private float duration;
 	private String comment;
+	private VacationStatus vacationStatus;
 
 	public int getId() {
 		return id;
@@ -20,12 +24,12 @@ public class VacationDTO {
 		this.id = id;
 	}
 
-	public String getEmployeeId() {
-		return employeeId;
+	public Employee getEmployee() {
+		return employee;
 	}
 
-	public void setEmployeeId(String employeeId) {
-		this.employeeId = employeeId;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 	public Date getRequestDate() {
@@ -66,6 +70,14 @@ public class VacationDTO {
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+	public VacationStatus getVacationStatus() {
+		return vacationStatus;
+	}
+
+	public void setVacationStatus(VacationStatus vacationStatus) {
+		this.vacationStatus = vacationStatus;
 	}
 
 }

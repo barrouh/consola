@@ -46,9 +46,11 @@ export class LoginComponent implements OnInit {
       this.employeeObj = new Employee();
       this.employeeObj = data;
       if (this.employeeObj) {
-        this.authenticationService.isAuthenticated=true;
-        sessionStorage.setItem("isAuthenticated", JSON.stringify(true));
-        sessionStorage.setItem("userDetails", JSON.stringify(this.employeeObj));
+        this.authenticationService.isAuthenticated = true;
+        sessionStorage.setItem("isAuthenticated", "true");
+        sessionStorage.setItem("loggedUsername", this.employeeObj.username);
+        sessionStorage.setItem("loggedFullName", this.employeeObj.fullName);
+        sessionStorage.setItem("loggedRole", this.employeeObj.role.name);
         this.router.navigate(["../layout/landing-page"], {
           relativeTo: this.activatedRoute,
         });

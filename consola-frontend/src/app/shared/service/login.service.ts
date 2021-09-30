@@ -14,4 +14,27 @@ export class LoginService {
   login(loginDTO: LoginDTO): any {
     return this.http.post(this.url + 'api/employees/login', loginDTO);
   }
+
+  loggetin(loginDTO: LoginDTO): any {
+    return this.http.post(this.url + 'api/employees/login', loginDTO);
+  }
+
+  public getLoggedUsername(): string {
+    let loggedUsername = '';
+    let temp = sessionStorage.getItem("loggedUsername");
+    if (temp) {
+      loggedUsername = temp.toString();
+    }
+    return loggedUsername;
+   }
+
+   public getLoggedFullName(): string {
+    let loggedFullName = '';
+    let temp = sessionStorage.getItem("loggedFullName");
+    if (temp) {
+      loggedFullName = temp.toString();
+    }
+    return loggedFullName;
+   }
+
 }

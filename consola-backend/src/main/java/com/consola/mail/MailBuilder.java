@@ -12,7 +12,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.util.FileCopyUtils;
 
 import com.consola.model.Employee;
-import com.consola.model.VacationStatusVacation;
+import com.consola.model.Vacation;
 
 public class MailBuilder {
 
@@ -27,11 +27,11 @@ public class MailBuilder {
 		return mail;
 	}
 	
-	public String buildMailForNotification(VacationStatusVacation vs) throws IOException {
+	public String buildMailForNotification(Vacation v) throws IOException {
 		String mail = readFile("notification.html");
-		mail.replace(MailConstants.FULLNAME_KEY, vs.getVacation().getEmployee().getFullName());
-		mail.replace(MailConstants.ID_KEY, vs.getVacation().getId()+"");
-		mail.replace(MailConstants.STATUS_KEY, vs.getVacationStatus().getName());
+		mail.replace(MailConstants.FULLNAME_KEY, v.getEmployee().getFullName());
+		mail.replace(MailConstants.ID_KEY, v.getId()+"");
+		mail.replace(MailConstants.STATUS_KEY, v.getVacationStatus().getName());
 		return mail;
 	}
 
@@ -47,8 +47,7 @@ public class MailBuilder {
 		Resource resource = new ClassPathResource("classpath:".concat(fileName));
 		InputStream inputStream = resource.getInputStream();
 		byte[] bdata = FileCopyUtils.copyToByteArray(inputStream);
-		String data = new String(bdata, StandardCharsets.UTF_8);
-		return data;
+		return new String(bdata, StandardCharsets.UTF_8);
 	}
 
 }

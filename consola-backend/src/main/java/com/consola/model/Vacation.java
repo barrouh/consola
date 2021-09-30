@@ -25,6 +25,7 @@ public class Vacation implements java.io.Serializable {
 	private Date endDate;
 	private float duration;
 	private String comment;
+	private VacationStatus vacationStatus;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -95,4 +96,13 @@ public class Vacation implements java.io.Serializable {
 		this.comment = comment;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "vacationStatusId", nullable = false)
+	public VacationStatus getVacationStatus() {
+		return vacationStatus;
+	}
+
+	public void setVacationStatus(VacationStatus vacationStatus) {
+		this.vacationStatus = vacationStatus;
+	}
 }

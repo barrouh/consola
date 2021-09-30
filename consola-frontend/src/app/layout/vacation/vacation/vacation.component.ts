@@ -4,7 +4,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Vacation } from 'src/app/shared/model/vacation';
 import { Employee } from 'src/app/shared/model/employee';
+import { VacationStatus } from 'src/app/shared/model/vacation-status';
 import { VacationService } from 'src/app/shared/service/vacation.service';
+import { LoginService } from "src/app/shared/service/login.service";
 
 @Component({
   selector: 'app-vacation',
@@ -19,6 +21,7 @@ export class VacationComponent implements OnInit {
  constructor(
    private formBuilder: FormBuilder,
    private vacationService: VacationService,
+   private loginService: LoginService,
    public dialogRef: MatDialogRef<VacationComponent>,
    private snackBar: MatSnackBar,
    @Inject(MAT_DIALOG_DATA) public data: any
@@ -54,11 +57,12 @@ export class VacationComponent implements OnInit {
 
  // actions methods
  saveVacation() {
-   this.vacationObj.employee = new Employee("barrouh");
+   this.vacationObj.employee = new Employee(this.loginService.getLoggedUsername());
    this.vacationObj.duration = this.vacationForm.controls.duration.value;
    this.vacationObj.comment = this.vacationForm.controls.comment.value;
    this.vacationObj.startDate = this.vacationForm.controls.startDate.value;
    this.vacationObj.endDate = this.vacationForm.controls.endDate.value;
+   this.vacationObj.vacationStatus = new VacationStatus(1);// Pending
    this.vacationObj.requestDate = new Date();
    this.vacationService.saveVacation(this.vacationObj).subscribe((data: any) => {
      this.dialogRef.close();

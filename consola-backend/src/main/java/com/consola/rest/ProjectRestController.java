@@ -35,7 +35,7 @@ public class ProjectRestController {
 	public ResponseEntity<Page<Project>> projects(
 			@RequestParam(name = "pageSize", defaultValue = "10", required = false) Integer pageSize,
 			@RequestParam(name = "pageIndex", defaultValue = "0", required = false) Integer pageIndex) {
-		return new ResponseEntity<Page<Project>>(projectRepository.findAll(PageRequest.of(pageIndex, pageSize)), HttpStatus.OK);
+		return new ResponseEntity<>(projectRepository.findAll(PageRequest.of(pageIndex, pageSize)), HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")

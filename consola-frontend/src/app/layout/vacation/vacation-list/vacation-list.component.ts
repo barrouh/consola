@@ -27,6 +27,7 @@ displayedColumns = [
   'startDate',
   'endDate',
   'duration',
+  'status',
   'action',
 ];
 

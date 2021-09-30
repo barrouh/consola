@@ -85,7 +85,7 @@ export class NotificationListComponent implements OnInit {
       data: {
         id,
         action: 'Edit',
-        snackMessage: 'Project updated successfully',
+        snackMessage: '',
       },
       disableClose: true,
       width: '600px',

@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { MenuItem } from "src/app/shared/interface/menu-item";
+import { NotificationService } from 'src/app/shared/service/notification.service';
+import { LoginService } from "src/app/shared/service/login.service";
 
 @Component({
   selector: "app-header",
@@ -8,49 +10,83 @@ import { MenuItem } from "src/app/shared/interface/menu-item";
   styleUrls: ["./header.component.css"],
 })
 export class HeaderComponent implements OnInit {
-  menuItems: MenuItem[] = [
-    {
-      label: "Projects",
-      icon: "work",
-      routerLink: "/layout/project",
-    },
-    {
-      label: "Employees",
-      icon: "people",
-      routerLink: "/layout/employee",
-    },
-    {
-      label: "Roles",
-      icon: "people",
-      routerLink: "/layout/role",
-    },
-    {
-      label: "Status",
-      icon: "people",
-      routerLink: "/layout/status",
-    },
-    {
-      label: "Vacation",
-      icon: "people",
-      routerLink: "/layout/vacation",
-    },
-    {
-      label: "Vacation Status",
-      icon: "people",
-      routerLink: "/layout/vacation-status",
-    },
-    {
-      label: "Supervisor Account",
-      icon: "supervisor_account",
-      routerLink: "/layout/supervisor",
-    },
-  ];
 
-  constructor(private router: Router) {}
-
+  public loggedFullName = this.loginService?.getLoggedFullName();
+  public menuItems: MenuItem[] = [];
   public isAuthenticated: string = "";
+
+  constructor(
+    private router: Router, 
+    private notificationService?: NotificationService,
+    private loginService?: LoginService) {
+  }
+
   ngOnInit(): void {
     this.checkAuth();
+    let role = sessionStorage.getItem("loggedRole");
+    let count = this.notificationService?.getNotificationsCountforLoggedUser();
+    let notficationsCount = "Notfications("+count+")";
+    let menuItems1: MenuItem[] = [
+        {
+          label: "Projects",
+          icon: "work",
+          routerLink: "/layout/project",
+        },
+        {
+          label: "Employees",
+          icon: "people",
+          routerLink: "/layout/employee",
+        },
+        {
+          label: "Roles",
+          icon: "people",
+          routerLink: "/layout/role",
+        },
+        {
+          label: "Status",
+          icon: "people",
+          routerLink: "/layout/status",
+        },
+        {
+          label: "Vacation",
+          icon: "people",
+          routerLink: "/layout/vacation",
+        },
+        {
+          label: "Vacation Status",
+          icon: "people",
+          routerLink: "/layout/vacation-status",
+        },
+        {
+          label: notficationsCount,
+          icon: "notifications",
+          routerLink: "/layout/notification",
+        },
+        {
+          label: "Supervisor Account",
+          icon: "supervisor_account",
+          routerLink: "/layout/supervisor",
+        },
+      ];
+  
+   let menuItems2: MenuItem[] = [
+      {
+        label: "Vacation",
+        icon: "people",
+        routerLink: "/layout/vacation",
+      },
+      {
+        label: notficationsCount,
+        icon: "notifications",
+        routerLink: "/layout/notification",
+      }
+    ];
+
+    if(role == "Developer"){
+      this.menuItems = menuItems2;
+    }else{
+      this.menuItems = menuItems1;
+    }
   }
 
   redirctToRouterLink(value: any) {

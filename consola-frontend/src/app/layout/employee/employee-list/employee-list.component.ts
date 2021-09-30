@@ -25,7 +25,6 @@ export class EmployeeListComponent implements OnInit {
   displayedColumns = [
     'username',
     'fullName',
-    'email',
     'role',
     'responsible',
     'joinDate',

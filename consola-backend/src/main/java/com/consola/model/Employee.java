@@ -33,6 +33,14 @@ public class Employee implements java.io.Serializable {
 	private float initialBalance;
 	private float currentBalance;
 	private Set<Project> projects = new HashSet<>(0);
+	
+	public Employee() {
+
+	}
+	
+	public Employee(String username) {
+		this.username = username;
+	}
 
 	@Id
 	@Column(name = "username", unique = true, nullable = false)
