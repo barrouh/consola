@@ -1,5 +1,6 @@
 package com.consola.rest;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
@@ -37,6 +38,11 @@ public class ProjectRestController {
 			@RequestParam(name = "pageIndex", defaultValue = "0", required = false) Integer pageIndex) {
 		return new ResponseEntity<>(projectRepository.findAll(PageRequest.of(pageIndex, pageSize)), HttpStatus.OK);
 	}
+	
+	@GetMapping("/all")
+	public ResponseEntity<List<Project>> allProjects() {
+		return new ResponseEntity<>(projectRepository.findAll(), HttpStatus.OK);
+	}
 
 	@GetMapping("/{id}")
 	public Optional<Project> projectById(@PathVariable("id") int id) {
@@ -52,5 +58,7 @@ public class ProjectRestController {
 	public void deleteProjectById(@PathVariable("id") int id) {
 		projectRepository.deleteById(id);
 	}
+	
+	
 
 }

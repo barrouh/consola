@@ -3,6 +3,7 @@ package com.consola.model;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,8 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "Project", catalog = "consola")
@@ -91,7 +90,7 @@ public class Project implements java.io.Serializable {
 		this.endDate = endDate;
 	}
 
-	@JsonIgnore
+	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "Project_Employee", catalog = "consola", joinColumns = {
 			@JoinColumn(name = "projectId", nullable = false, updatable = false) }, inverseJoinColumns = {

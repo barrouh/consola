@@ -14,23 +14,35 @@ export class HeaderComponent implements OnInit {
   public loggedFullName = this.loginService?.getLoggedFullName();
   public menuItems: MenuItem[] = [];
   public isAuthenticated: string = "";
+  public notficationsCount: string = "";
 
   constructor(
     private router: Router, 
     private notificationService?: NotificationService,
     private loginService?: LoginService) {
+      let count = -1;
+      this.notificationService?.getNotificationsCountforLoggedUser()
+        .subscribe((data: any) => {
+          count = data;
+      });
+  
+      this.notficationsCount = "Notfications("+count+")";
   }
 
   ngOnInit(): void {
     this.checkAuth();
     let role = sessionStorage.getItem("loggedRole");
-    let count = this.notificationService?.getNotificationsCountforLoggedUser();
-    let notficationsCount = "Notfications("+count+")";
+
     let menuItems1: MenuItem[] = [
         {
           label: "Projects",
           icon: "work",
           routerLink: "/layout/project",
+        },
+        {
+          label: "Projects Overview",
+          icon: "work",
+          routerLink: "/layout/projects-overview",
         },
         {
           label: "Employees",
@@ -58,7 +70,7 @@ export class HeaderComponent implements OnInit {
           routerLink: "/layout/vacation-status",
         },
         {
-          label: notficationsCount,
+          label: this.notficationsCount,
           icon: "notifications",
           routerLink: "/layout/notification",
         },
@@ -76,7 +88,7 @@ export class HeaderComponent implements OnInit {
         routerLink: "/layout/vacation",
       },
       {
-        label: notficationsCount,
+        label: this.notficationsCount,
         icon: "notifications",
         routerLink: "/layout/notification",
       }

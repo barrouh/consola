@@ -18,7 +18,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SupervisorComponent } from './supervisor/supervisor.component';
-import { ContactComponent } from './contact/contact.component';
+import { ProjectsOverviewComponent } from './project/projects-overview/projects-overview.component';
 import { ProjectsListComponent } from './project/projects-list/projects-list.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -46,7 +46,7 @@ import { VacationComponent } from './vacation/vacation/vacation.component';
     ProjectsListComponent,
     ProjectComponent,
     SupervisorComponent,
-    ContactComponent,
+    ProjectsOverviewComponent,
     StatusComponent,
     StatusListComponent,
     RoleComponent,

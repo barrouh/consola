@@ -1,11 +1,10 @@
 package com.consola.rest;
 
-import java.io.IOException;
 import java.util.Optional;
 
-import javax.mail.MessagingException;
-
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,8 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.consola.dto.EmployeeDTO;
 import com.consola.dto.LoginDTO;
-import com.consola.mail.MailBuilder;
 import com.consola.mail.ConsolaMailSender;
+import com.consola.mail.MailBuilder;
 import com.consola.model.Employee;
 import com.consola.repositories.EmployeeRepository;
 
@@ -42,6 +41,8 @@ public class EmployeeRestController {
 	private MailBuilder mailBuilder;
 
 	private ModelMapper mapper = new ModelMapper();
+	
+    private Logger logger = LogManager.getLogger(EmployeeRestController.class);
 
 	@GetMapping("")
 	public ResponseEntity<Page<Employee>> employees(
@@ -67,15 +68,19 @@ public class EmployeeRestController {
 	}
 
 	@PostMapping("/save")
-	public Employee saveEmployee(@RequestBody EmployeeDTO employee) throws MessagingException, IOException {
+	public Employee saveEmployee(@RequestBody EmployeeDTO employee) {
 		int length = 10;
 		boolean useLetters = true;
 		boolean useNumbers = true;
 		String password = RandomStringUtils.random(length, useLetters, useNumbers);
 		employee.setPassword(password);
-		Employee e = employeeRepository.saveAndFlush(mapper.map(employee, Employee.class));
-		consolaMailSender.sendEmail(e.getEmail(), mailBuilder.subjectForPasswordMail(), mailBuilder.buildMailForPassword(e));
-		return e;
+		Employee em = employeeRepository.saveAndFlush(mapper.map(employee, Employee.class));
+		try {
+			consolaMailSender.sendEmail(em.getEmail(), mailBuilder.subjectForPasswordMail(), mailBuilder.buildMailForPassword(em));
+		} catch (Exception e) {
+			logger.error(e);
+		}
+		return em;
 	}
 
 	@DeleteMapping("/{id}")

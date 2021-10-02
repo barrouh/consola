@@ -28,11 +28,12 @@ public class AppConf implements WebMvcConfigurer {
 		return new MailBuilder();
 	}
 
-	@Bean
-	public MessageSource messageSource() {
+	@Bean(name="messageSourceMail")
+	public MessageSource messageSourceMail() {
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-		messageSource.setBasenames("classpath:messages.properties");
+		messageSource.setBasenames("messages");
 		messageSource.setDefaultEncoding("UTF-8");
+		messageSource.setUseCodeAsDefaultMessage(true);
 		return messageSource;
 	}
 }

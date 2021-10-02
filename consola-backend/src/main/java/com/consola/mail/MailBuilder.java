@@ -17,7 +17,7 @@ import com.consola.model.Vacation;
 public class MailBuilder {
 
 	@Autowired
-	private MessageSource messageSource;
+	private MessageSource messageSourceMail;
 
 	public String buildMailForPassword(Employee e) throws IOException {
 		String mail = readFile("password.html");
@@ -36,15 +36,15 @@ public class MailBuilder {
 	}
 
 	public String subjectForPasswordMail() {
-		return messageSource.getMessage("password.mail.subject", null, Locale.ENGLISH);
+		return messageSourceMail.getMessage("password.mail.subject", null, Locale.ENGLISH);
 	}
 	
 	public String subjectForNotificationMail() {
-		return messageSource.getMessage("notification.mail.subject", null, Locale.ENGLISH);
+		return messageSourceMail.getMessage("notification.mail.subject", null, Locale.ENGLISH);
 	}
 
 	private String readFile(String fileName) throws IOException {
-		Resource resource = new ClassPathResource("classpath:".concat(fileName));
+		Resource resource = new ClassPathResource(fileName);
 		InputStream inputStream = resource.getInputStream();
 		byte[] bdata = FileCopyUtils.copyToByteArray(inputStream);
 		return new String(bdata, StandardCharsets.UTF_8);

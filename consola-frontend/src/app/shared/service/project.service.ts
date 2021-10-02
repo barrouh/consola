@@ -17,6 +17,10 @@ export class ProjectService {
     );
   }
 
+  getAllProjects2(): any {
+    return this.http.get(this.url + 'api/projects/all');
+  }
+
   getProjectByid(id: number): any {
     return this.http.get(this.url + 'api/projects/' + id);
   }

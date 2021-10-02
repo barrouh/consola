@@ -1,15 +1,12 @@
 package com.consola.model;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -32,7 +29,6 @@ public class Employee implements java.io.Serializable {
 	private Date leaveDate;
 	private float initialBalance;
 	private float currentBalance;
-	private Set<Project> projects = new HashSet<>(0);
 	
 	public Employee() {
 
@@ -136,19 +132,6 @@ public class Employee implements java.io.Serializable {
 
 	public void setCurrentBalance(float currentBalance) {
 		this.currentBalance = currentBalance;
-	}
-
-	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "Project_Employee", catalog = "consola", joinColumns = {
-			@JoinColumn(name = "employeeId", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "projectId", nullable = false, updatable = false) })
-	public Set<Project> getProjects() {
-		return this.projects;
-	}
-
-	public void setProjects(Set<Project> projects) {
-		this.projects = projects;
 	}
 
 }

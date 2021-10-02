@@ -24,12 +24,7 @@ export class NotificationService {
     return this.http.get(this.url + 'api/notifications/' + id);
   }
 
-  getNotificationsCountforLoggedUser(): number {
-    let count: number = -1;
-    this.http.get<number>(this.url + 'api/notifications/count/' + this.loginService.getLoggedUsername()).subscribe((data: number) => {
-      count = data;
-      console.log(count);
-    });
-    return count;
+  getNotificationsCountforLoggedUser(): any {
+    return this.http.get<number>(this.url + 'api/notifications/count/' + this.loginService.getLoggedUsername());
   }
 }
