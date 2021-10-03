@@ -1,5 +1,6 @@
 package com.consola.rest;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.consola.dto.VacationDTO;
+import com.consola.model.Employee;
 import com.consola.model.Vacation;
 import com.consola.model.VacationStatus;
 import com.consola.repositories.VacationRepository;
@@ -30,7 +32,7 @@ public class VacationRestController {
 	private VacationRepository vacationRepository;
 
 	private ModelMapper mapper = new ModelMapper();
-	
+
 	@GetMapping("")
 	public ResponseEntity<Page<Vacation>> vacations(
 			@RequestParam(name = "pageSize", defaultValue = "10", required = false) Integer pageSize,
@@ -42,21 +44,21 @@ public class VacationRestController {
 	public Optional<Vacation> vacationById(@PathVariable("id") int id) {
 		return vacationRepository.findById(id);
 	}
-	
+
 	@GetMapping("/approve/{id}")
 	public void approveVacation(@PathVariable("id") int id) {
 		Optional<Vacation> op = vacationRepository.findById(id);
-		if(op.isPresent()) {
+		if (op.isPresent()) {
 			Vacation v = op.get();
 			v.setVacationStatus(new VacationStatus(2));
 			vacationRepository.save(v);
 		}
 	}
-	
+
 	@GetMapping("/reject/{id}")
 	public void rejectVacation(@PathVariable("id") int id) {
 		Optional<Vacation> op = vacationRepository.findById(id);
-		if(op.isPresent()) {
+		if (op.isPresent()) {
 			Vacation v = op.get();
 			v.setVacationStatus(new VacationStatus(3));
 			vacationRepository.save(v);
@@ -73,4 +75,8 @@ public class VacationRestController {
 		vacationRepository.deleteById(id);
 	}
 
+	@GetMapping("/username/{username}")
+	public List<Vacation> allVacationsByUsername(@PathVariable("username") String username) {
+		return vacationRepository.findAllByEmployee(new Employee(username));
+	}
 }

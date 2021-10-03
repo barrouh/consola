@@ -40,8 +40,8 @@ import { NotificationListComponent } from "./notification/notification-list/noti
 import { VacationListComponent } from "./vacation/vacation-list/vacation-list.component";
 import { VacationComponent } from "./vacation/vacation/vacation.component";
 import { ProjectEmployeeComponent } from "./project/project-employee/project-employee.component";
-// import { CalendarModule, DateAdapter } from "angular-calendar";
-// import { adapterFactory } from "angular-calendar/date-adapters/date-fns";
+import { CalendarModule, DateAdapter } from "angular-calendar";
+import { adapterFactory } from "angular-calendar/date-adapters/date-fns";
 @NgModule({
   declarations: [
     LandingPageComponent,
@@ -86,10 +86,10 @@ import { ProjectEmployeeComponent } from "./project/project-employee/project-emp
     MatDatepickerModule,
     MatNativeDateModule,
     MatTooltipModule,
-    // CalendarModule.forRoot({
-    //   provide: DateAdapter,
-    //   useFactory: adapterFactory,
-    // }),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
   providers: [],
   bootstrap: [LayoutComponent],
