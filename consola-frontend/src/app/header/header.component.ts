@@ -49,7 +49,7 @@ export class HeaderComponent implements OnInit {
       },
       {
         label: "Projects Overview",
-        icon: "work",
+        icon: "pageview",
         routerLink: "/layout/projects-overview",
       },
       {
@@ -59,22 +59,22 @@ export class HeaderComponent implements OnInit {
       },
       {
         label: "Roles",
-        icon: "people",
+        icon: "control_camera",
         routerLink: "/layout/role",
       },
       {
         label: "Status",
-        icon: "people",
+        icon: "view_list",
         routerLink: "/layout/status",
       },
       {
         label: "Vacation",
-        icon: "people",
+        icon: "calendar_today",
         routerLink: "/layout/vacation",
       },
       {
         label: "Vacation Status",
-        icon: "people",
+        icon: "calendar_view_day",
         routerLink: "/layout/vacation-status",
       },
       {

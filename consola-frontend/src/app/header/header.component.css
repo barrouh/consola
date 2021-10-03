@@ -26,3 +26,7 @@ mat-sidenav {
 .home {
   font-size: 20px;
 }
+
+::ng-deep .mat-drawer-inner-container {
+  overflow: hidden !important;
+}
