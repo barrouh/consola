@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Project } from 'src/app/shared/model/project';
 import { ProjectService } from 'src/app/shared/service/project.service';
-import { ProjectComponent } from '../project/project.component';
+import { ProjectEmployeeComponent } from '../project-employee/project-employee.component';
 @Component({
   selector: 'app-projects-overview',
   templateUrl: './projects-overview.component.html',
@@ -18,7 +18,7 @@ export class ProjectsOverviewComponent implements OnInit {
  ) {}
 
  ngOnInit(): void {
-   this.loadProjects();
+   this.loadProjectsOverview();
  }
  
  ngAfterViewInit() {
@@ -28,7 +28,7 @@ export class ProjectsOverviewComponent implements OnInit {
 }
 
  // load methods
- loadProjects() {
+ loadProjectsOverview() {
    this.projectService.getAllProjects2().subscribe((data: any) => {
       this.projects = data;
      });
@@ -36,17 +36,17 @@ export class ProjectsOverviewComponent implements OnInit {
 
  // actions methods
  addEmployee(projectId: number): void {
-   let dialogRef = this.dialog.open(ProjectComponent, {
+   let dialogRef = this.dialog.open(ProjectEmployeeComponent, {
      data: {
+       id: projectId,
        action: 'Add',
        snackMessage: 'Employee added successfully',
      },
      width: '600px',
      disableClose: true,
    });
-
    dialogRef.afterClosed().subscribe(() => {
-     this.loadProjects();
+     this.loadProjectsOverview();
    });
  }
 }

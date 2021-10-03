@@ -21,6 +21,14 @@ export class VacationService {
     return this.http.get(this.url + 'api/vacations/' + id);
   }
 
+  approveVacation(id: number): any {
+    return this.http.get(this.url + 'api/vacations/approve/' + id);
+  }
+
+  rejectVacation(id: number): any {
+    return this.http.get(this.url + 'api/vacations/reject/' + id);
+  }
+
   saveVacation(vacation: Vacation): Observable<any> {
     return this.http.post(this.url + 'api/vacations/save', vacation);
   }

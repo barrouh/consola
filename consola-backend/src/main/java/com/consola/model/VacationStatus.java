@@ -17,6 +17,14 @@ public class VacationStatus implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private String name;
+	
+	
+	public VacationStatus() {
+	}
+	
+	public VacationStatus(int id) {
+		this.id = id;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

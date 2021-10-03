@@ -19,9 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.consola.dto.ProjectDTO;
+import com.consola.dto.ProjectEmployeeIdDTO;
 import com.consola.model.Project;
+import com.consola.model.ProjectEmployee;
+import com.consola.model.ProjectEmployeeId;
+import com.consola.repositories.ProjectEmployeeRepository;
 import com.consola.repositories.ProjectRepository;
-
 
 @RestController
 @RequestMapping("/api/projects")
@@ -29,6 +32,9 @@ public class ProjectRestController {
 
 	@Autowired
 	private ProjectRepository projectRepository;
+
+	@Autowired
+	private ProjectEmployeeRepository projectEmployeeRepository;
 
 	private ModelMapper mapper = new ModelMapper();
 
@@ -39,6 +45,19 @@ public class ProjectRestController {
 		return new ResponseEntity<>(projectRepository.findAll(PageRequest.of(pageIndex, pageSize)), HttpStatus.OK);
 	}
 	
+	@GetMapping("check/{projectId}/employee/{employeeId}")
+	public Optional<ProjectEmployee> checkProjectEmployee(@PathVariable("projectId") Integer projectId,
+			@PathVariable("employeeId") String employeeId) {
+		ProjectEmployeeId id = new ProjectEmployeeId(projectId, employeeId);
+		return projectEmployeeRepository.findById(id);
+	} 
+
+	@PostMapping("/project-employee")
+	public ProjectEmployee addProjectEmployee(@RequestBody ProjectEmployeeIdDTO projectEmployeeId) {
+		ProjectEmployeeId id = mapper.map(projectEmployeeId, ProjectEmployeeId.class);
+		return projectEmployeeRepository.save(new ProjectEmployee(id));
+	}
+
 	@GetMapping("/all")
 	public ResponseEntity<List<Project>> allProjects() {
 		return new ResponseEntity<>(projectRepository.findAll(), HttpStatus.OK);
@@ -58,7 +77,5 @@ public class ProjectRestController {
 	public void deleteProjectById(@PathVariable("id") int id) {
 		projectRepository.deleteById(id);
 	}
-	
-	
 
 }

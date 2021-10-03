@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.consola.dto.VacationDTO;
 import com.consola.model.Vacation;
+import com.consola.model.VacationStatus;
 import com.consola.repositories.VacationRepository;
 
 @RestController
@@ -40,6 +41,26 @@ public class VacationRestController {
 	@GetMapping("/{id}")
 	public Optional<Vacation> vacationById(@PathVariable("id") int id) {
 		return vacationRepository.findById(id);
+	}
+	
+	@GetMapping("/approve/{id}")
+	public void approveVacation(@PathVariable("id") int id) {
+		Optional<Vacation> op = vacationRepository.findById(id);
+		if(op.isPresent()) {
+			Vacation v = op.get();
+			v.setVacationStatus(new VacationStatus(2));
+			vacationRepository.save(v);
+		}
+	}
+	
+	@GetMapping("/reject/{id}")
+	public void rejectVacation(@PathVariable("id") int id) {
+		Optional<Vacation> op = vacationRepository.findById(id);
+		if(op.isPresent()) {
+			Vacation v = op.get();
+			v.setVacationStatus(new VacationStatus(3));
+			vacationRepository.save(v);
+		}
 	}
 
 	@PostMapping("/save")
