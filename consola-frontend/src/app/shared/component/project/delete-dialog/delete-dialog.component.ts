@@ -5,6 +5,7 @@ import { ProjectService } from "../../../service/project.service";
 import { StatusService } from "../../../service/status.service";
 import { VacationStatusService } from "src/app/shared/service/vacation-status.service";
 import { RoleService } from "src/app/shared/service/role.service";
+import { EmployeeService } from "src/app/shared/service/employee.service";
 
 @Component({
   selector: "app-delete-dialog",
@@ -14,6 +15,7 @@ import { RoleService } from "src/app/shared/service/role.service";
 export class DeleteDialogComponent implements OnInit {
   constructor(
     private projectService: ProjectService,
+    private employeeService: EmployeeService,
     private statusService: StatusService,
     private vacationStatusService: VacationStatusService,
     private roleService: RoleService,
@@ -51,6 +53,17 @@ export class DeleteDialogComponent implements OnInit {
   deleteVacationStatus() {
     this.vacationStatusService
       .deleteStatusByid(this.data.id)
+      .subscribe((data: any) => {
+        this.snackBar.open(this.data.snackMessage, "", {
+          duration: 3000,
+        });
+        this.dialogRef.close();
+      });
+  }
+
+  deleteEmployee() {
+    this.employeeService
+      .deleteEmployeeByid(this.data.id)
       .subscribe((data: any) => {
         this.snackBar.open(this.data.snackMessage, "", {
           duration: 3000,
